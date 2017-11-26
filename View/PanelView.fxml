@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#pytAction" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Controller.PanelController">
+   <children>
+      <MenuBar fx:id="mb_panel" layoutY="2.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Menu">
+            <items>
+                  <MenuItem fx:id="m_send" mnemonicParsing="false" onAction="#sendAction" text="wyślij" />
+                  <MenuItem fx:id="m_send_custom" mnemonicParsing="false" onAction="#sendCustomAction" text="wyślij gdzie chcesz" />
+                  <MenuItem fx:id="m_clear" mnemonicParsing="false" onAction="#clearAction" text="wyczyść" />
+                  <MenuItem fx:id="m_exit" mnemonicParsing="false" onAction="#exitAction" text="Wyjdź" />
+                  <MenuItem fx:id="m_sendDB" mnemonicParsing="false" onAction="#sendDBAction" text="wyślij do bazy" />
+                  <MenuItem fx:id="m_sendDB" mnemonicParsing="false" onAction="#sendDBAction" text="wyślij do bazy" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Pomoc">
+            <items>
+              <MenuItem fx:id="m_help" mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Button fx:id="btn_pyt" layoutX="101.0" layoutY="297.0" mnemonicParsing="false" text="PYTANIA" />
+      <Button fx:id="btn_kurs" layoutX="387.0" layoutY="297.0" mnemonicParsing="false" onMouseClicked="#KursAction" text="KURSANCI" />
+      <ImageView fitHeight="178.0" fitWidth="272.0" layoutX="398.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../logo_pionowe_reaktor.png" />
+         </image>
+         <effect>
+            <Glow />
+         </effect>
+      </ImageView>
+   </children>
+</AnchorPane>
