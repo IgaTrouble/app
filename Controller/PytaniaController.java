@@ -160,8 +160,8 @@ public class PytaniaController {
     
     
 
-<<<<<<< HEAD
-    public void select() {
+
+    public void select() throws SQLException {
 
     Connection conn = db.Connection();
 	data = FXCollections.observableArrayList();

@@ -8,8 +8,5 @@ package app.Database;
 		public Connection Connection() throws SQLException {
 			return DriverManager.getConnection("jdbc:mysql://localhost:3306/Ankieta", "root", "root");
 		}
-		
-
-
 	}
 
