@@ -31,7 +31,7 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Button fx:id="btn_pyt" layoutX="101.0" layoutY="297.0" mnemonicParsing="false" text="PYTANIA" />
+      <Button fx:id="btn_pyt" layoutX="101.0" layoutY="297.0" mnemonicParsing="false" onMouseClicked="#pytAction" text="PYTANIA" />
       <Button fx:id="btn_kurs" layoutX="387.0" layoutY="297.0" mnemonicParsing="false" onMouseClicked="#KursAction" text="KURSANCI" />
       <ImageView fitHeight="178.0" fitWidth="272.0" layoutX="398.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
          <image>

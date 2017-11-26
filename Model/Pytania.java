@@ -9,6 +9,7 @@ public class Pytania {
 	private String odp3;
 	private String odp4;
 	private Integer odppopr;
+	
 	public Integer getIdp() {
 		return idp;
 	}

@@ -82,7 +82,7 @@ public class PanelController {
     @FXML
     void KursAction(MouseEvent event) throws IOException {
     	Stage stage = new Stage();
-    	Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/app/View/KursView.fxml"));
+    	Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/app/View/KursanciView.fxml"));
 		Scene scene = new Scene(parent);
 		stage.setScene(scene);
 		stage.setTitle("Kursanci");
@@ -94,7 +94,7 @@ public class PanelController {
     @FXML
     void pytAction(MouseEvent event) throws IOException {
     	Stage stage = new Stage();
-    	Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/app/View/PytView.fxml"));
+    	Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/app/View/PytaniaView.fxml"));
 		Scene scene = new Scene(parent);
 		stage.setScene(scene);
 		stage.setTitle("Pytania");
