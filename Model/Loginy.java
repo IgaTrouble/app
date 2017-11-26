@@ -1,5 +1,12 @@
 package app.Model;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import app.Database.DBConnector;
+
 public class Loginy {
 	private String email;
 	private String imie;
@@ -7,6 +14,7 @@ public class Loginy {
 	private String grupa;
 	private String pass;
 	private String typ;
+	DBConnector db;
 	public String getEmail() {
 		return email;
 	}
@@ -53,6 +61,27 @@ public class Loginy {
 		this.pass = pass;
 		this.typ = typ;
 	}
+	
+	public boolean savedotb() throws SQLException {
+		db = new DBConnector();
+		String sql="insert into loginy(email,imie,nazwisko,grupa,pass,typ) "
+				+ "values('"+this.email+"','"+this.imie+"','"+this.nazwisko+"','"+this.grupa+"','"+this.pass+"','"+this.typ+"')";
+		Connection conn;
+		conn=db.Connection();
+		
+		System.out.println(sql);
+		try {	
+			conn.createStatement().executeUpdate(sql);
+			conn.close();
+			return true;
+		} catch (SQLException e) {
+			System.out.println("B³¹d zapisu do DB : "+e.getMessage());
+			conn.close();
+			
+			return false;
+		}
+	}
+	
 	
 	
 	

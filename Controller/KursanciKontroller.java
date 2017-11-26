@@ -1,8 +1,16 @@
 package app.Controller;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Objects;
 
+import app.Database.DBConnector;
 import app.Model.Loginy;
+import app.Model.Pytania;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -14,12 +22,16 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class KursanciKontroller {
 
+	public DBConnector db;
+	public ObservableList<Loginy> data;
+	
     @FXML
     private TableView<Loginy> tvKursanci;
 
@@ -67,14 +79,32 @@ public class KursanciKontroller {
 
     @FXML
     private TextField txPassword;
+    
+    private void wyczysc(){
+    	txEmail.clear();
+    	txImie.clear();
+    	txNazwisko.clear();
+    	txNazwisko.clear();
+    	pwdPass1.clear();
+    	pwdPass2.clear();
+    }
 
     @FXML
     void actionAdd(MouseEvent event) {
     	System.out.println("Wejœcie w ADD");
     	if (czy_wypelnione()){
     		System.out.println("Zapis");
+    		Loginy l=new Loginy( txEmail.getText(),  txImie.getText(),  txNazwisko.getText(),
+    				txGrupa.getText(),  pwdPass1.getText(),  "KURSANT");
+    		try {
+				l.savedotb();
+				select();
+				wyczysc();
+			} catch (SQLException e) {
+				System.out.println("Nie uda³o siê zapisaæ");
+				e.printStackTrace();
+			}
     	}
-
     }
     
     public boolean czy_wypelnione(){
@@ -84,10 +114,10 @@ public class KursanciKontroller {
     	if (txEmail.getText().equals("")) { err+="\n* pole 'login/email'"; ok=false;}
     	if (txImie.getText().equals("")) {err+="\n* pole 'imiê'";ok=false;}
     	if (txNazwisko.getText().equals("")) {err+="\n* pole 'nazwisko'";ok=false;}
-    	if (txGrupa.getText().equals("")) {err+="\n* pole 'grupa'";ok=false;}
+    	if (txNazwisko.getText().equals("")) {err+="\n* pole 'grupa'";ok=false;}
     	if (pwdPass1.getText().equals("")) {err+="\n* pole 'has³o'";ok=false;}
     	if (pwdPass2.getText().equals("")) {err+="\n* pole 'powtórz has³o'";ok=false;}
-    	if (!pwdPass1.getText().equals(pwdPass2.getText())) {err+="\n* "; ok=false;}
+    	if (!pwdPass1.getText().equals(pwdPass2.getText())) {err+="\n* Has³a nie s¹ zgodne !"; ok=false;}
     	if (ok){
     		System.out.println("Pola wype³nione");
     		return true;
@@ -105,12 +135,56 @@ public class KursanciKontroller {
 
     @FXML
     void actionPokazHaslo(MouseEvent event) {
-
+    	if (!Objects.isNull(tvKursanci.getSelectionModel().getSelectedItem())){
+	    	String selLogin = tvKursanci.getSelectionModel().getSelectedItem().getPass();
+	    	if (!Objects.isNull(selLogin)){
+	    			//System.out.println(selLogin);
+	    			txPassword.setText(selLogin);		
+	    	}
+    	} 
+    }
+    
+    @FXML
+    void actionTableClick(MouseEvent event) {
+    	txPassword.setText("");	
     }
 
     @FXML
     void actionUsun(MouseEvent event) {
 
+    }
+    
+    public boolean select() {
+    	
+    	try {
+    		System.out.println("Try SELECT KURSANCI");
+	    	Connection conn = db.Connection();
+	    	data = FXCollections.observableArrayList();
+	    	ResultSet rs = conn.createStatement().executeQuery("select email, imie, nazwisko, grupa,pass,typ from loginy where typ='KURSANT'");
+	    	
+	    	while(rs.next()){
+	    		data.add(new Loginy
+	    				(rs.getString(1), 
+	    				 rs.getString(2), 
+	    				 rs.getString(3), 
+	    				 rs.getString(4),
+	    				 rs.getString(5),
+	    				 rs.getString(6)
+	    				 ));
+	    	}
+	    	conn.close();
+    	} catch (SQLException e){
+    		System.out.println("Kursanci wyst¹pi³ b³¹d +"+e.getMessage());
+    		e.printStackTrace();
+    	}
+    	colEmail.setCellValueFactory(new PropertyValueFactory<Loginy,String>("email"));
+    	colImie.setCellValueFactory(new PropertyValueFactory<Loginy,String>("imie"));
+    	colNazwisko.setCellValueFactory(new PropertyValueFactory<Loginy,String>("nazwisko"));
+    	colGrupa.setCellValueFactory(new PropertyValueFactory<Loginy,String>("grupa"));
+    	
+    	tvKursanci.setItems(null);
+    	tvKursanci.setItems(data);
+    	return true;
     }
 
     @FXML
@@ -125,6 +199,12 @@ public class KursanciKontroller {
     	stage.show();
         System.out.println("Zamykamy okienko bie¿¹ce");
     	((Node)(event.getSource())).getScene().getWindow().hide();
+    }
+    
+    public void initialize() {
+    	//btnZamknij.setText(LoginController.name + "\nDziekujemy za zalogowanie");
+    	db = new DBConnector();
+    	select();
     }
 
 }

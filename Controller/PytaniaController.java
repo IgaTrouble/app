@@ -116,12 +116,14 @@ public class PytaniaController {
     
 
     public void select() {
+    /*	
     Connection conn = db.Connection();
 	data = FXCollections.observableArrayList();
 	ResultSet rs = conn.createStatement().executeQuery("select * from pytania");
 	while(rs.next()){
 		data.add(new Pytania(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(6), rs.getInt(1)));
 	}
+	
 	col_id.setCellValueFactory(new PropertyValueFactory<Users,Integer>("id"));
 	col_name.setCellValueFactory(new PropertyValueFactory<Users,String>("name"));
 	col_last.setCellValueFactory(new PropertyValueFactory<Users,String>("last"));
@@ -129,7 +131,7 @@ public class PytaniaController {
 	col_position.setCellValueFactory(new PropertyValueFactory<Users,String>("position"));
 	table_view.setItems(null);
 	table_view.setItems(data);
-
+*/
 }
 
     
