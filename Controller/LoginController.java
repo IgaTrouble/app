@@ -17,6 +17,8 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -51,6 +53,16 @@ public class LoginController {
     
     @FXML
     void buttonLogin(MouseEvent event) throws IOException, SQLException {
+    	this.logowanie();
+    	if(flagLog) {
+    		((Node)(event.getSource())).getScene().getWindow().hide(); 
+    	}
+    }
+    	
+    	
+    	
+     boolean flagLog = false;
+    void logowanie() throws SQLException, IOException {
     	Connection conn1 = db.Connection();
     	Statement stmt = conn1.createStatement();
     	ResultSet rs = stmt.executeQuery("select typ from loginy where email ='"+ txt_log.getText()+"' and pass='"+pf_pass.getText()+"'");
@@ -65,14 +77,14 @@ public class LoginController {
 	        	stage.setScene(scene);
 	        	stage.setTitle("Logowanie");
 	        	stage.show();
-	        	((Node)(event.getSource())).getScene().getWindow().hide(); }
+	         }
     		else {
     			Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/app/View/TestView.fxml"));
 	        	Scene scene = new Scene(parent);
 	        	stage.setScene(scene);
 	        	stage.setTitle("Logowanie");
 	        	stage.show();
-	        	((Node)(event.getSource())).getScene().getWindow().hide();
+	        
     		}
     	} else {
     		Alert e = new Alert(AlertType.ERROR);
@@ -102,5 +114,17 @@ public class LoginController {
     	}
     	
     }
-
+    
+    @FXML
+    void enterLog(KeyEvent event) throws SQLException, IOException {
+    	if(event.getCode() == KeyCode.ENTER)	{
+    		this.logowanie();
+    		if(flagLog) {
+    		((Node)(event.getSource())).getScene().getWindow().hide(); 
+    		}
+    	}
+    
+    
+    }
 }
+
