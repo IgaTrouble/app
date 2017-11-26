@@ -3,6 +3,7 @@ package app.Controller;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import app.Database.DBConnector;
 import app.Model.Pytania;
@@ -13,18 +14,23 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class PytaniaController {
 	public DBConnector db;
 	public ObservableList<Pytania> data;
+    ObservableList<String> zakres = FXCollections.observableArrayList("SQL", "Git", "Python", "Java");
 
     @FXML
     private TableView<Pytania> tvPytania;
@@ -89,11 +95,49 @@ public class PytaniaController {
 
     @FXML
     private RadioButton rbOdp4;
+    
+    @FXML
+    private ComboBox<String> cb_zakres;
 
     @FXML
     void actionDodaj(MouseEvent event) {
-
+    	System.out.println("Wej�cie w ADD");
+    	if (czy_wypelnione()){
+    		System.out.println("Zapis");
+    	}
+    	
     }
+    
+    
+    public boolean czy_wypelnione(){
+    	System.out.println("Weryfikacja czy wypełnione wszystkie pola");
+    	String err="Nie wypełniłeś wymaganych pól:";
+    	boolean ok=true;
+    	if (tfPytanie.getText().equals("")) { err+="\n* pole 'pytanie'"; ok=false;}
+    	if (tfOdp1.getText().equals("")) {err+="\n* pole 'imi�'";ok=false;}
+    	if (tfOdp2.getText().equals("")) {err+="\n* pole 'nazwisko'";ok=false;}
+    	if (tfOdp3.getText().equals("")) {err+="\n* pole 'grupa'";ok=false;}
+    	if (tfOdp4.getText().equals("")) {err+="\n* pole 'has�o masło'";ok=false;}
+    	if (G1.getSelectedToggle() == null) {err+="\n* pole 'random'";ok=false;}
+    	if ((cb_zakres.getValue() == null) || (cb_zakres.equals(""))) {err+="\n* pole 'chceckbox'";ok=false;}	
+    	if (ok){
+    		System.out.println("Pola wype�nione");
+    		return true;
+    		
+    	} else{
+    		System.out.println("Pola niewype�nione");
+    		Alert e = new Alert(AlertType.ERROR);
+        	e.setContentText(err);
+        	e.setHeaderText("B��d, nie wype�ni�e� p�l");
+        	e.setTitle("B��d");
+        	e.showAndWait(); 
+    		return false;
+    	}
+    }
+    
+    
+    
+    
 
     @FXML
     void actionZamknij(MouseEvent event) throws IOException {
@@ -107,32 +151,35 @@ public class PytaniaController {
     }
     
     
-    public void initialize() {
-    	//btnZamknij.setText(LoginController.name + "\nDziekujemy za zalogowanie");
+    public void initialize() throws SQLException {
     	db = new DBConnector();
+    	this.select();
     	tvPytania.setEditable(true);
+    	cb_zakres.setItems(zakres);
     }
     
     
 
-    public void select() {
+    public void select() throws SQLException {
     Connection conn = db.Connection();
 	data = FXCollections.observableArrayList();
 	ResultSet rs = conn.createStatement().executeQuery("select * from pytania");
 	while(rs.next()){
-		data.add(new Pytania(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(6), rs.getInt(1)));
+		data.add(new Pytania(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8)));
 	}
-	col_id.setCellValueFactory(new PropertyValueFactory<Users,Integer>("id"));
-	col_name.setCellValueFactory(new PropertyValueFactory<Users,String>("name"));
-	col_last.setCellValueFactory(new PropertyValueFactory<Users,String>("last"));
-	col_salary.setCellValueFactory(new PropertyValueFactory<Users,Double>("salary"));
-	col_position.setCellValueFactory(new PropertyValueFactory<Users,String>("position"));
-	table_view.setItems(null);
-	table_view.setItems(data);
+	colid.setCellValueFactory(new PropertyValueFactory<Pytania,Integer>("idp"));
+	colpytanie.setCellValueFactory(new PropertyValueFactory<Pytania,String>("zakres"));
+	colodp1.setCellValueFactory(new PropertyValueFactory<Pytania,String>("pytanie"));
+	colodp2.setCellValueFactory(new PropertyValueFactory<Pytania,String>("odp1"));
+	colodp3.setCellValueFactory(new PropertyValueFactory<Pytania,String>("odp2"));
+	colodp4.setCellValueFactory(new PropertyValueFactory<Pytania,String>("odp3"));
+	colodp5.setCellValueFactory(new PropertyValueFactory<Pytania,String>("odp4"));
+	colnrodp.setCellValueFactory(new PropertyValueFactory<Pytania,Integer>("odppopr"));
+	tvPytania.setItems(null);
+	tvPytania.setItems(data);
 
 }
 
     
-    
-    
+
 }
