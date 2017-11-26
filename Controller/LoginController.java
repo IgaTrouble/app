@@ -67,6 +67,7 @@ public class LoginController {
     	Statement stmt = conn1.createStatement();
     	ResultSet rs = stmt.executeQuery("select typ from loginy where email ='"+ txt_log.getText()+"' and pass='"+pf_pass.getText()+"'");
     	if(rs.next()) {
+    		flagLog = true;
     		typ = rs.getString("typ");
     		System.out.println(typ);
     		System.out.println("rs");
