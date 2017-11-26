@@ -44,9 +44,17 @@ create table odpowiedzi(
     foreign key (test) references testy(idt)
 );
 
-drop table pytania;
-drop table odpowiedzi;
-drop table testy;
-drop table loginy;
+#drop table pytania;
+#drop table odpowiedzi;
+#drop table testy;
+#drop table loginy;
+
+insert into zakresy(zakres, opis_zakresu) values ('SQL', 'pytania z bazy danych');
+insert into zakresy(zakres, opis_zakresu) values ('GiT', 'pytania z bazy danych');
+insert into zakresy(zakres, opis_zakresu) values ('Python', 'pytania z bazy danych');
+insert into zakresy(zakres, opis_zakresu) values ('Java', 'pytania z bazy danych');
+
+
 
 insert into loginy(email,imie,nazwisko,grupa,pass,typ) values ('admin','Admin','Admin','ADMIN','admin','EGZAMINATOR');
+insert into pytania(zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) values ('SQL','Jakim poleceniem utworzysz nową bazę danych?','create table','use database','altertable','create database', 4);

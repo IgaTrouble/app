@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import app.Database.DBConnector;
+
 import app.Model.Pytania;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -104,8 +105,26 @@ public class PytaniaController {
     	System.out.println("Wej�cie w ADD");
     	if (czy_wypelnione()){
     		System.out.println("Zapis");
+    		System.out.println(cb_zakres.getValue());
+    		System.out.println(G1.getSelectedToggle());
+    		Integer odp =0;
+    		if (((Node) G1.getSelectedToggle()).getId().equals("rbOdp1")) odp=1;
+    		if (((Node) G1.getSelectedToggle()).getId().equals("rbOdp2")) odp=2;
+    		if (((Node) G1.getSelectedToggle()).getId().equals("rbOdp3")) odp=3;
+    		if (((Node) G1.getSelectedToggle()).getId().equals("rbOdp4")) odp=4;
+    		System.out.println(odp);
+    		Pytania l=new Pytania(0, cb_zakres.getValue(), tfPytanie.getText(),  tfOdp1.getText(),  tfOdp2.getText(),
+    				 tfOdp3.getText(),  tfOdp4.getText(), odp);
+    			
+    		try {
+				l.savedotb();
+				select();
+				// wyczysc();
+			} catch (SQLException e) {
+				System.out.println("Nie uda�o si� zapisa�");
+				e.printStackTrace();
+			}
     	}
-    	
     }
     
     
@@ -160,14 +179,15 @@ public class PytaniaController {
     
     
 
-<<<<<<< HEAD
-    public void select() {
+
+    public void select() throws SQLException {
 
     Connection conn = db.Connection();
 	data = FXCollections.observableArrayList();
 	ResultSet rs = conn.createStatement().executeQuery("select * from pytania");
 	while(rs.next()){
-		data.add(new Pytania(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8)));
+		data.add(new Pytania(rs.getInt(1), rs.getString(3), rs.getString(2),
+				rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8)));
 	}
 
 

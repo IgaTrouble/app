@@ -1,6 +1,12 @@
 package app.Model;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import app.Database.DBConnector;
+
 public class Pytania {
+	DBConnector db;
 	private Integer idp;
 	private String zakres;
 	private String pytanie;
@@ -70,6 +76,28 @@ public class Pytania {
 		this.odp4 = odp4;
 		this.odppopr = odppopr;
 	}
-	
+	/*public Pytania(String text, String text2, String text3, String text4, String text5, Integer odp,
+			String value) {
+		
+	}*/
+	public boolean savedotb() throws SQLException {
+		db = new DBConnector();
+		String sql="insert into pytania(idp, zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) "
+				+ "values("+this.idp+",'"+this.zakres+"','"+this.pytanie+"','"+this.odp1+"','"+this.odp2+"','"+this.odp3+"','"+this.odp4+"',"+this.odppopr+")";
+		Connection conn;
+		conn=db.Connection();
+		
+		System.out.println(sql);
+		try {	
+			conn.createStatement().executeUpdate(sql);
+			conn.close();
+			return true;
+		} catch (SQLException e) {
+			System.out.println("B��d zapisu do DB : "+e.getMessage());
+			conn.close();
+			
+			return false;
+		}
+	}
 
 }
