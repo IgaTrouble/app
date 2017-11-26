@@ -24,32 +24,92 @@ public class Loginy {
 	public String getImie() {
 		return imie;
 	}
-	public void setImie(String imie) {
+	public void setImie(String imie) throws SQLException {
 		this.imie = imie;
+		
+		db = new DBConnector();
+		String sql="update  loginy set imie='"+this.imie+"' where email='"+this.email+"';";
+				
+		Connection conn;
+		conn=db.Connection();
+		
+		System.out.println(sql);
+		try {	
+			conn.createStatement().executeUpdate(sql);
+			conn.close();			
+		} catch (SQLException e) {
+			System.out.println("B³¹d zapisu do DB : "+e.getMessage());
+			conn.close();			
+		}
 	}
 	public String getNazwisko() {
 		return nazwisko;
 	}
-	public void setNazwisko(String nazwisko) {
+	public void setNazwisko(String nazwisko) throws SQLException {
 		this.nazwisko = nazwisko;
+		
+		db = new DBConnector();
+		String sql="update  loginy set nazwisko='"+this.nazwisko+"' where email='"+this.email+"';";
+				
+		Connection conn;
+		conn=db.Connection();
+		
+		System.out.println(sql);
+		try {	
+			conn.createStatement().executeUpdate(sql);
+			conn.close();			
+		} catch (SQLException e) {
+			System.out.println("B³¹d zapisu do DB : "+e.getMessage());
+			conn.close();			
+		}
 	}
 	public String getGrupa() {
 		return grupa;
 	}
-	public void setGrupa(String grupa) {
+	public void setGrupa(String grupa) throws SQLException {
 		this.grupa = grupa;
+		db = new DBConnector();
+		String sql="update  loginy set grupa='"+this.grupa+"' where email='"+this.email+"';";
+				
+		Connection conn;
+		conn=db.Connection();
+		
+		System.out.println(sql);
+		try {	
+			conn.createStatement().executeUpdate(sql);
+			conn.close();			
+		} catch (SQLException e) {
+			System.out.println("B³¹d zapisu do DB : "+e.getMessage());
+			conn.close();			
+		}
 	}
 	public String getPass() {
 		return pass;
 	}
 	public void setPass(String pass) {
 		this.pass = pass;
+		
 	}
 	public String getTyp() {
 		return typ;
 	}
-	public void setTyp(String typ) {
+	public void setTyp(String typ) throws SQLException {
 		this.typ = typ;
+		
+		db = new DBConnector();
+		String sql="update  loginy set typ='"+this.typ+"' where email='"+this.email+"';";
+				
+		Connection conn;
+		conn=db.Connection();
+		
+		System.out.println(sql);
+		try {	
+			conn.createStatement().executeUpdate(sql);
+			conn.close();			
+		} catch (SQLException e) {
+			System.out.println("B³¹d zapisu do DB : "+e.getMessage());
+			conn.close();			
+		}
 	}
 	
 	public Loginy(String email, String imie, String nazwisko, String grupa, String pass, String typ) {
@@ -82,6 +142,25 @@ public class Loginy {
 		}
 	}
 	
+	public boolean delete() throws SQLException{
+		db = new DBConnector();
+		String sql="delete from loginy where email='"+this.email+"';";
+
+		Connection conn;
+		conn=db.Connection();
+		
+		System.out.println(sql);
+		try {	
+			conn.createStatement().executeUpdate(sql);
+			conn.close();
+			return true;
+		} catch (SQLException e) {
+			System.out.println("B³¹d kasowania z DB : "+e.getMessage());
+			conn.close();
+			
+			return false;
+		}
+	}
 	
 	
 	

@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Objects;
+import java.util.Optional;
 
 import app.Database.DBConnector;
 import app.Model.Loginy;
@@ -18,11 +19,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -46,6 +50,9 @@ public class KursanciKontroller {
 
     @FXML
     private TableColumn<Loginy, String> colGrupa;
+    
+    @FXML
+    private TableColumn<Loginy, String> coltyp;
 
     @FXML
     private Button btnZamknij;
@@ -80,22 +87,26 @@ public class KursanciKontroller {
     @FXML
     private TextField txPassword;
     
+    @FXML
+    private Button btnAddAdmin;
+
+    
     private void wyczysc(){
     	txEmail.clear();
     	txImie.clear();
     	txNazwisko.clear();
     	txNazwisko.clear();
+    	txGrupa.clear();
     	pwdPass1.clear();
     	pwdPass2.clear();
     }
 
-    @FXML
-    void actionAdd(MouseEvent event) {
+    void add(String typ){
     	System.out.println("Wejœcie w ADD");
     	if (czy_wypelnione()){
     		System.out.println("Zapis");
     		Loginy l=new Loginy( txEmail.getText(),  txImie.getText(),  txNazwisko.getText(),
-    				txGrupa.getText(),  pwdPass1.getText(),  "KURSANT");
+    				txGrupa.getText(),  pwdPass1.getText(), typ);
     		try {
 				l.savedotb();
 				select();
@@ -105,6 +116,16 @@ public class KursanciKontroller {
 				e.printStackTrace();
 			}
     	}
+    }
+    
+    @FXML
+    void actionAdd(MouseEvent event) {
+    	add("KURSANT");
+    }
+    
+    @FXML
+    void actionAddAdmin(MouseEvent event) {
+    	add("EGZAMINATOR");
     }
     
     public boolean czy_wypelnione(){
@@ -151,7 +172,30 @@ public class KursanciKontroller {
 
     @FXML
     void actionUsun(MouseEvent event) {
-
+    	if (!Objects.isNull(tvKursanci.getSelectionModel().getSelectedItem())){
+	    	String selLogin = tvKursanci.getSelectionModel().getSelectedItem().getEmail();
+	    	if (!Objects.isNull(selLogin)){
+	    		Alert a = new Alert(AlertType.CONFIRMATION);
+	        	a.setHeaderText("Usuwanie");
+	        	a.setContentText("Czy chcesz usun¹æ kursanta "+selLogin);
+	        	a.setTitle("Potwierdzenie usuniêcia");
+	        	ButtonType btTAK = new ButtonType("TAK, Usuñ");
+	        	ButtonType btNIE = new ButtonType("NIE");
+	        	a.getButtonTypes().setAll(btTAK, btNIE);
+	        	Optional<ButtonType> result = a.showAndWait();
+	        	if (result.get() == btTAK) {
+	        		try {
+	        			System.out.println("Usuwanie...");
+						tvKursanci.getSelectionModel().getSelectedItem().delete();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						System.out.println("B³¹d przy usuwaniu "+e.getMessage());
+						e.printStackTrace();
+					}
+	        		select();
+	        	};			
+	    	}
+    	} 
     }
     
     public boolean select() {
@@ -160,7 +204,7 @@ public class KursanciKontroller {
     		System.out.println("Try SELECT KURSANCI");
 	    	Connection conn = db.Connection();
 	    	data = FXCollections.observableArrayList();
-	    	ResultSet rs = conn.createStatement().executeQuery("select email, imie, nazwisko, grupa,pass,typ from loginy where typ='KURSANT'");
+	    	ResultSet rs = conn.createStatement().executeQuery("select email, imie, nazwisko, grupa,pass,typ from loginy ");
 	    	
 	    	while(rs.next()){
 	    		data.add(new Loginy
@@ -177,10 +221,7 @@ public class KursanciKontroller {
     		System.out.println("Kursanci wyst¹pi³ b³¹d +"+e.getMessage());
     		e.printStackTrace();
     	}
-    	colEmail.setCellValueFactory(new PropertyValueFactory<Loginy,String>("email"));
-    	colImie.setCellValueFactory(new PropertyValueFactory<Loginy,String>("imie"));
-    	colNazwisko.setCellValueFactory(new PropertyValueFactory<Loginy,String>("nazwisko"));
-    	colGrupa.setCellValueFactory(new PropertyValueFactory<Loginy,String>("grupa"));
+    	
     	
     	tvKursanci.setItems(null);
     	tvKursanci.setItems(data);
@@ -204,6 +245,56 @@ public class KursanciKontroller {
     public void initialize() {
     	//btnZamknij.setText(LoginController.name + "\nDziekujemy za zalogowanie");
     	db = new DBConnector();
+    	 	
+    	colEmail.setCellValueFactory(new PropertyValueFactory<Loginy,String>("email"));
+    	colImie.setCellValueFactory(new PropertyValueFactory<Loginy,String>("imie"));
+    	colNazwisko.setCellValueFactory(new PropertyValueFactory<Loginy,String>("nazwisko"));
+    	colGrupa.setCellValueFactory(new PropertyValueFactory<Loginy,String>("grupa"));
+    	coltyp.setCellValueFactory(new PropertyValueFactory<Loginy,String>("typ"));
+    	
+    	colEmail.setCellFactory(TextFieldTableCell.<Loginy>forTableColumn());
+    	colEmail.setOnEditCommit(
+	            (CellEditEvent<Loginy, String> t) -> {
+	                ((Loginy) t.getTableView().getItems().get(
+	                        t.getTablePosition().getRow())
+	                        ).setEmail(t.getNewValue());
+	        });
+    	colImie.setCellFactory(TextFieldTableCell.<Loginy>forTableColumn());
+    	colImie.setOnEditCommit(
+	            (CellEditEvent<Loginy, String> t) -> {
+	                try {
+						((Loginy) t.getTableView().getItems().get(
+						        t.getTablePosition().getRow())
+						        ).setImie(t.getNewValue());
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+	        });
+    	colNazwisko.setCellFactory(TextFieldTableCell.<Loginy>forTableColumn());
+    	colNazwisko.setOnEditCommit(
+	            (CellEditEvent<Loginy, String> t) -> {
+	                try {
+						((Loginy) t.getTableView().getItems().get(
+						        t.getTablePosition().getRow())
+						        ).setNazwisko(t.getNewValue());
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+	        });
+    	colGrupa.setCellFactory(TextFieldTableCell.<Loginy>forTableColumn());
+    	colGrupa.setOnEditCommit(
+	            (CellEditEvent<Loginy, String> t) -> {
+	                try {
+						((Loginy) t.getTableView().getItems().get(
+						        t.getTablePosition().getRow())
+						        ).setGrupa(t.getNewValue());
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+	        });
     	select();
     }
 
