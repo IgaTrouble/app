@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import app.Database.DBConnector;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 public class Pytania {
 	private Integer idp;
@@ -14,7 +16,9 @@ public class Pytania {
 	private String odp3;
 	private String odp4;
 	private Integer odppopr;
+	static String sqlUpd;
 	DBConnector db;
+
 	
 	
 	@Override
@@ -47,44 +51,87 @@ public class Pytania {
 	public String getZakres() {
 		return zakres;
 	}
-	public void setZakres(String zakres) {
+	public void setZakres(String zakres) throws SQLException {
 		this.zakres = zakres;
+		if (zakres.equals("SQL") || zakres.equals("Git") || zakres.equals("Front-End")
+				|| zakres.equals("Python") || zakres.equals("Java") || zakres.equals("Spring"))  {
+		sqlUpd="update pytania set zakres='"+this.zakres+"' where idp='"+this.idp+"';";
+		System.out.println(sqlUpd);
+		this.update();
+		} else { //to powinno być w pytania controlerze przy edit
+			Alert e = new Alert(AlertType.ERROR);
+        	e.setContentText("Błąd");
+        	e.setHeaderText("Błąd, podano błędny zakres pytań");
+        	e.setTitle("Błąd");
+        	e.showAndWait(); 
+			
+		}
+		
+		
 	}
 	public String getPytanie() {
 		return pytanie;
 	}
-	public void setPytanie(String pytanie) {
+	public void setPytanie(String pytanie) throws SQLException {
 		this.pytanie = pytanie;
+		sqlUpd="update pytania set pytanie='"+this.pytanie+"' where idp='"+this.idp+"';";
+		System.out.println(sqlUpd);
+		this.update();
 	}
 	public String getOdp1() {
 		return odp1;
 	}
-	public void setOdp1(String odp1) {
+	public void setOdp1(String odp1) throws SQLException {
 		this.odp1 = odp1;
+		sqlUpd="update pytania set odp1='"+this.odp1+"' where idp='"+this.idp+"';";
+		System.out.println(sqlUpd);
+		this.update();
 	}
 	public String getOdp2() {
 		return odp2;
 	}
-	public void setOdp2(String odp2) {
+	public void setOdp2(String odp2) throws SQLException {
 		this.odp2 = odp2;
+		sqlUpd="update pytania set odp2='"+this.odp2+"' where idp='"+this.idp+"';";
+		System.out.println(sqlUpd);
+		this.update();
 	}
 	public String getOdp3() {
 		return odp3;
 	}
-	public void setOdp3(String odp3) {
+	public void setOdp3(String odp3) throws SQLException {
 		this.odp3 = odp3;
+		sqlUpd="update pytania set odp3='"+this.odp3+"' where idp='"+this.idp+"';";
+		System.out.println(sqlUpd);
+		this.update();
 	}
 	public String getOdp4() {
 		return odp4;
 	}
-	public void setOdp4(String odp4) {
+	public void setOdp4(String odp4) throws SQLException {
 		this.odp4 = odp4;
+		sqlUpd="update pytania set odp4='"+this.odp4+"' where idp='"+this.idp+"';";
+		System.out.println(sqlUpd);
+		this.update();
+		
 	}
 	public Integer getOdppopr() {
 		return odppopr;
 	}
-	public void setOdppopr(Integer odppopr) {
+	public void setOdppopr(Integer odppopr) throws SQLException {
 		this.odppopr = odppopr;
+		if (odppopr < 5) {
+			sqlUpd="update pytania set odppopr='"+this.odppopr+"' where idp='"+this.idp+"';";
+			System.out.println(sqlUpd);
+			this.update();
+		} else {
+			Alert e = new Alert(AlertType.ERROR);
+        	e.setContentText("Błąd"); //to powinno być w pytania controlerze przy edit
+        	e.setHeaderText("Błąd, poprawna odpowiedz może zawierać się w przedziale 1-4");
+        	e.setTitle("Błąd");
+        	e.showAndWait(); 
+		}
+		
 	}
 
 	public boolean savePyt() throws SQLException {
@@ -111,23 +158,35 @@ public class Pytania {
 	public boolean delete() throws SQLException{
 		db = new DBConnector();
 		String sql="delete from pytania where idp='"+this.idp+"';";
-
 		Connection conn;
 		conn=db.Connection();
-		
 		System.out.println(sql);
 		try {	
 			conn.createStatement().executeUpdate(sql);
 			conn.close();
 			return true;
 		} catch (SQLException e) {
-			System.out.println("B��d kasowania z DB : "+e.getMessage());
+			System.out.println("Błąd kasowania z DB : "+e.getMessage());
 			conn.close();
 			
 			return false;
 		}
 	}
 	
+
 	
+	public void update( ) throws SQLException {
+	db = new DBConnector();
+	Connection conn=db.Connection();
+	System.out.println(sqlUpd);
+	try {	
+		conn.createStatement().executeUpdate(sqlUpd);
+		conn.close();			
+	} catch (SQLException e) {
+		System.out.println("Błąd zapisu do Bazy Danych : "+e.getMessage());
+		conn.close();			
+	}
+	
+	}
 
 }
