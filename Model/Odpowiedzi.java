@@ -1,5 +1,9 @@
 package app.Model;
 
+import java.sql.SQLException;
+
+import app.Database.DBConnector;
+
 public class Odpowiedzi {
 	private Integer ido;
 	private Integer test;
@@ -29,12 +33,26 @@ public class Odpowiedzi {
 	public void setOdpowiedz(Integer odpowiedz) {
 		this.odpowiedz = odpowiedz;
 	}
-	public Odpowiedzi(Integer ido, Integer test, Integer pytanie, Integer odpowiedz) {
+	public Odpowiedzi(Integer test, Integer pytanie, Integer odpowiedz) {
 		super();
-		this.ido = ido;
+		this.ido = 0;
 		this.test = test;
 		this.pytanie = pytanie;
 		this.odpowiedz = odpowiedz;
+	}
+	
+	public boolean save(){
+		String sql="insert into odpowiedzi(test,pytanie,odpowiedz) values("+this.test+","+this.pytanie+","+this.odpowiedz+");";
+		DBConnector db = new DBConnector();
+		System.out.println(sql);
+		try {
+			db.Connection().createStatement().executeUpdate(sql);
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 	
 }
