@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Objects;
+import java.util.Optional;
 
 import app.Database.DBConnector;
 
@@ -17,6 +19,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
@@ -99,6 +102,12 @@ public class PytaniaController {
     
     @FXML
     private ComboBox<String> cb_zakres;
+    
+    @FXML
+    private Button btn_edit;
+
+    @FXML
+    private Button btn_delete;
 
     @FXML
     void actionDodaj(MouseEvent event) {
@@ -161,7 +170,7 @@ public class PytaniaController {
     @FXML
     void actionZamknij(MouseEvent event) throws IOException {
     	Stage stage = new Stage();
-    	Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/app/View/LoginView.fxml"));
+    	Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/app/View/PanelView.fxml"));
     	Scene scene = new Scene(parent);
     	stage.setScene(scene);
     	stage.setTitle("Logowanie");
@@ -182,29 +191,62 @@ public class PytaniaController {
 
     public void select() throws SQLException {
 
-    Connection conn = db.Connection();
-	data = FXCollections.observableArrayList();
-	ResultSet rs = conn.createStatement().executeQuery("select * from pytania");
-	while(rs.next()){
-		data.add(new Pytania(rs.getInt(1), rs.getString(3), rs.getString(2),
-				rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8)));
-	}
+	    Connection conn = db.Connection();
+		data = FXCollections.observableArrayList();
+		ResultSet rs = conn.createStatement().executeQuery("select * from pytania");
+		while(rs.next()){
+			data.add(new Pytania(rs.getInt(1), rs.getString(3), rs.getString(2),
+					rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8)));
+		}
 
 
-	colid.setCellValueFactory(new PropertyValueFactory<Pytania,Integer>("idp"));
-	colpytanie.setCellValueFactory(new PropertyValueFactory<Pytania,String>("zakres"));
-	colodp1.setCellValueFactory(new PropertyValueFactory<Pytania,String>("pytanie"));
-	colodp2.setCellValueFactory(new PropertyValueFactory<Pytania,String>("odp1"));
-	colodp3.setCellValueFactory(new PropertyValueFactory<Pytania,String>("odp2"));
-	colodp4.setCellValueFactory(new PropertyValueFactory<Pytania,String>("odp3"));
-	colodp5.setCellValueFactory(new PropertyValueFactory<Pytania,String>("odp4"));
-	colnrodp.setCellValueFactory(new PropertyValueFactory<Pytania,Integer>("odppopr"));
-	tvPytania.setItems(null);
-	tvPytania.setItems(data);
+		colid.setCellValueFactory(new PropertyValueFactory<Pytania,Integer>("idp"));
+		colpytanie.setCellValueFactory(new PropertyValueFactory<Pytania,String>("zakres"));
+		colodp1.setCellValueFactory(new PropertyValueFactory<Pytania,String>("pytanie"));
+		colodp2.setCellValueFactory(new PropertyValueFactory<Pytania,String>("odp1"));
+		colodp3.setCellValueFactory(new PropertyValueFactory<Pytania,String>("odp2"));
+		colodp4.setCellValueFactory(new PropertyValueFactory<Pytania,String>("odp3"));
+		colodp5.setCellValueFactory(new PropertyValueFactory<Pytania,String>("odp4"));
+		colnrodp.setCellValueFactory(new PropertyValueFactory<Pytania,Integer>("odppopr"));
+		tvPytania.setItems(null);
+		tvPytania.setItems(data);
 
+    }
 
-}
+    @FXML
+    void deleteAction(MouseEvent event) throws SQLException {
+     	if (!Objects.isNull(tvPytania.getSelectionModel().getSelectedItem())){
+	    	Integer idpyt = tvPytania.getSelectionModel().getSelectedItem().getIdp();
+	    	if (!Objects.isNull(idpyt)){
+	    		Alert a = new Alert(AlertType.CONFIRMATION);
+	        	a.setHeaderText("Usuwanie");
+	        	a.setContentText("Czy chcesz usunąć pytanie nr: "+idpyt);
+	        	a.setTitle("Potwierdzenie usunięcia");
+	        	ButtonType btTAK = new ButtonType("TAK, Usuń");
+	        	ButtonType btNIE = new ButtonType("NIE");
+	        	a.getButtonTypes().setAll(btTAK, btNIE);
+	        	Optional<ButtonType> result = a.showAndWait();
+	        	if (result.get() == btTAK) {
+	        		try {
+	        			System.out.println("Usuwanie...");
+						tvPytania.getSelectionModel().getSelectedItem().delete();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						System.out.println("Błą przy usuwaniu "+e.getMessage());
+						e.printStackTrace();
+					}
+	        		select();
+	        	};			
+	    	}
+    	} 
+    
 
+    }
+
+    @FXML
+    void editAction(MouseEvent event) {
+
+    }
     
 
 }

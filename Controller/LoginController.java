@@ -80,7 +80,7 @@ public class LoginController {
 	        	stage.show();
 	         }
     		else {
-    			Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/app/View/TestView.fxml"));
+    			Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/app/View/ZakresView.fxml"));
 	        	Scene scene = new Scene(parent);
 	        	stage.setScene(scene);
 	        	stage.setTitle("Logowanie");

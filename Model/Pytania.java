@@ -99,5 +99,28 @@ public class Pytania {
 			return false;
 		}
 	}
+	
+	
+	public boolean delete() throws SQLException{
+		db = new DBConnector();
+		String sql="delete from pytania where idp='"+this.idp+"';";
+
+		Connection conn;
+		conn=db.Connection();
+		
+		System.out.println(sql);
+		try {	
+			conn.createStatement().executeUpdate(sql);
+			conn.close();
+			return true;
+		} catch (SQLException e) {
+			System.out.println("B��d kasowania z DB : "+e.getMessage());
+			conn.close();
+			
+			return false;
+		}
+	}
+	
+	
 
 }

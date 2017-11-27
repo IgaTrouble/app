@@ -102,7 +102,7 @@ public class KursanciKontroller {
     }
 
     void add(String typ){
-    	System.out.println("Wejœcie w ADD");
+    	System.out.println("Wejï¿½cie w ADD");
     	if (czy_wypelnione()){
     		System.out.println("Zapis");
     		Loginy l=new Loginy( txEmail.getText(),  txImie.getText(),  txNazwisko.getText(),
@@ -112,7 +112,7 @@ public class KursanciKontroller {
 				select();
 				wyczysc();
 			} catch (SQLException e) {
-				System.out.println("Nie uda³o siê zapisaæ");
+				System.out.println("Nie udaï¿½o siï¿½ zapisaï¿½");
 				e.printStackTrace();
 			}
     	}
@@ -129,26 +129,26 @@ public class KursanciKontroller {
     }
     
     public boolean czy_wypelnione(){
-    	System.out.println("Weryfikacja czy wype³nione wszystkie pola");
-    	String err="Nie wype³ni³eœ wymaganych pól:";
+    	System.out.println("Weryfikacja czy wypeï¿½nione wszystkie pola");
+    	String err="Nie wypeï¿½niï¿½eï¿½ wymaganych pï¿½l:";
     	boolean ok=true;
     	if (txEmail.getText().equals("")) { err+="\n* pole 'login/email'"; ok=false;}
-    	if (txImie.getText().equals("")) {err+="\n* pole 'imiê'";ok=false;}
+    	if (txImie.getText().equals("")) {err+="\n* pole 'imiï¿½'";ok=false;}
     	if (txNazwisko.getText().equals("")) {err+="\n* pole 'nazwisko'";ok=false;}
     	if (txNazwisko.getText().equals("")) {err+="\n* pole 'grupa'";ok=false;}
-    	if (pwdPass1.getText().equals("")) {err+="\n* pole 'has³o'";ok=false;}
-    	if (pwdPass2.getText().equals("")) {err+="\n* pole 'powtórz has³o'";ok=false;}
-    	if (!pwdPass1.getText().equals(pwdPass2.getText())) {err+="\n* Has³a nie s¹ zgodne !"; ok=false;}
+    	if (pwdPass1.getText().equals("")) {err+="\n* pole 'hasï¿½o'";ok=false;}
+    	if (pwdPass2.getText().equals("")) {err+="\n* pole 'powtï¿½rz hasï¿½o'";ok=false;}
+    	if (!pwdPass1.getText().equals(pwdPass2.getText())) {err+="\n* Hasï¿½a nie sï¿½ zgodne !"; ok=false;}
     	if (ok){
-    		System.out.println("Pola wype³nione");
+    		System.out.println("Pola wypeï¿½nione");
     		return true;
     		
     	} else{
-    		System.out.println("Pola niewype³nione");
+    		System.out.println("Pola niewypeï¿½nione");
     		Alert e = new Alert(AlertType.ERROR);
         	e.setContentText(err);
-        	e.setHeaderText("B³¹d, nie wype³ni³eœ pól");
-        	e.setTitle("B³¹d");
+        	e.setHeaderText("Bï¿½ï¿½d, nie wypeï¿½niï¿½eï¿½ pï¿½l");
+        	e.setTitle("Bï¿½ï¿½d");
         	e.showAndWait(); 
     		return false;
     	}
@@ -177,9 +177,9 @@ public class KursanciKontroller {
 	    	if (!Objects.isNull(selLogin)){
 	    		Alert a = new Alert(AlertType.CONFIRMATION);
 	        	a.setHeaderText("Usuwanie");
-	        	a.setContentText("Czy chcesz usun¹æ kursanta "+selLogin);
-	        	a.setTitle("Potwierdzenie usuniêcia");
-	        	ButtonType btTAK = new ButtonType("TAK, Usuñ");
+	        	a.setContentText("Czy chcesz usunï¿½ï¿½ kursanta "+selLogin);
+	        	a.setTitle("Potwierdzenie usuniï¿½cia");
+	        	ButtonType btTAK = new ButtonType("TAK, Usuï¿½");
 	        	ButtonType btNIE = new ButtonType("NIE");
 	        	a.getButtonTypes().setAll(btTAK, btNIE);
 	        	Optional<ButtonType> result = a.showAndWait();
@@ -189,7 +189,7 @@ public class KursanciKontroller {
 						tvKursanci.getSelectionModel().getSelectedItem().delete();
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
-						System.out.println("B³¹d przy usuwaniu "+e.getMessage());
+						System.out.println("Bï¿½ï¿½d przy usuwaniu "+e.getMessage());
 						e.printStackTrace();
 					}
 	        		select();
@@ -218,7 +218,7 @@ public class KursanciKontroller {
 	    	}
 	    	conn.close();
     	} catch (SQLException e){
-    		System.out.println("Kursanci wyst¹pi³ b³¹d +"+e.getMessage());
+    		System.out.println("Kursanci wystï¿½piï¿½ bï¿½ï¿½d +"+e.getMessage());
     		e.printStackTrace();
     	}
     	
@@ -238,7 +238,7 @@ public class KursanciKontroller {
     	stage.setScene(scene);
     	stage.setTitle("Logowanie");
     	stage.show();
-        System.out.println("Zamykamy okienko bie¿¹ce");
+        System.out.println("Zamykamy okienko bieï¿½ï¿½ce");
     	((Node)(event.getSource())).getScene().getWindow().hide();
     }
     
