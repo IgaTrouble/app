@@ -31,12 +31,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.util.converter.IntegerStringConverter;
 
 public class PytaniaController {
 	public DBConnector db;
 	public ObservableList<Pytania> data;
-    ObservableList<String> zakres = FXCollections.observableArrayList("SQL", "Git", "Python", "Java");
-
+    ObservableList<String> zakres = FXCollections.observableArrayList("SQL", "Git", "Front-End", "Python", "Java", "Spring");
+//zakres jako select z bazy danych
     @FXML
     private TableView<Pytania> tvPytania;
 
@@ -69,7 +70,7 @@ public class PytaniaController {
 
 
     @FXML
-    private TextField tfPytanie; // coś
+    private TextField tfPytanie; 
 
     @FXML
     private TextField tfOdp1;
@@ -112,17 +113,19 @@ public class PytaniaController {
 
     @FXML
     void actionDodaj(MouseEvent event) {
-    	System.out.println("Wej�cie w ADD");
     	if (czy_wypelnione()){
-    		System.out.println("Zapis");
-    		System.out.println(cb_zakres.getValue());
-    		System.out.println(G1.getSelectedToggle());
     		Integer odp =0;
-    		if (((Node) G1.getSelectedToggle()).getId().equals("rbOdp1")) odp=1;
-    		if (((Node) G1.getSelectedToggle()).getId().equals("rbOdp2")) odp=2;
-    		if (((Node) G1.getSelectedToggle()).getId().equals("rbOdp3")) odp=3;
-    		if (((Node) G1.getSelectedToggle()).getId().equals("rbOdp4")) odp=4;
-    		System.out.println(odp);
+    		String zakres = ((Node) G1.getSelectedToggle()).getId();
+    		switch (zakres) {
+    		case "rbOdp1": odp = 1;
+    			break;
+    		case "rbOdp2": odp = 2;
+				break;
+    		case "rbOdp3": odp = 3;
+				break;
+    		case "rbOdp4": odp = 4;
+				break;
+    		}
     		Pytania l=new Pytania(0, cb_zakres.getValue(), tfPytanie.getText(),  tfOdp1.getText(),  tfOdp2.getText(),
     				 tfOdp3.getText(),  tfOdp4.getText(), odp);
     			
@@ -136,6 +139,29 @@ public class PytaniaController {
 			}
     	}
     }
+    public boolean czy_wypelnione(){
+    	System.out.println("Weryfikacja czy wypełnione wszystkie pola");
+    	String err="Nie wypełniłeś wymaganych pól:";
+    	boolean ok=true;
+    	if (tfPytanie.getText().equals("")) { err+="\n* pole 'pytanie'"; ok=false;}
+    	if (tfOdp1.getText().equals("")) {err+="\n* pole 'odp 1'";ok=false;}
+    	if (tfOdp2.getText().equals("")) {err+="\n* pole 'odp 2'";ok=false;}
+    	if (tfOdp3.getText().equals("")) {err+="\n* pole 'odp 3'";ok=false;}
+    	if (tfOdp4.getText().equals("")) {err+="\n* pole 'odp 4'";ok=false;}
+    	if (G1.getSelectedToggle() == null) {err+="\n* pole 'poprawna odp'";ok=false;}
+    	if ((cb_zakres.getValue() == null) || (cb_zakres.equals(""))) {err+="\n* pole 'zakres'";ok=false;}	
+    	if (ok){
+    		return true;
+    		
+    	} else{
+    		Alert e = new Alert(AlertType.ERROR);
+        	e.setContentText(err);
+        	e.setHeaderText("Błąd, nie wypełniono wszytskich pól");
+        	e.setTitle("Błąd");
+        	e.showAndWait(); 
+    		return false;
+    	}
+    }
     
     
 
@@ -146,104 +172,126 @@ public class PytaniaController {
 		tfOdp3.clear();
 		tfOdp4.clear();
 		G1.selectToggle(null);
-		cb_zakres.setValue(null);
-		
-		
-		
-		
-		
+		cb_zakres.setValue(null);		
 	}
     
-    
-    
-    public boolean czy_wypelnione(){
-    	System.out.println("Weryfikacja czy wypełnione wszystkie pola");
-    	String err="Nie wypełniłeś wymaganych pól:";
-    	boolean ok=true;
-    	if (tfPytanie.getText().equals("")) { err+="\n* pole 'pytanie'"; ok=false;}
-    	if (tfOdp1.getText().equals("")) {err+="\n* pole 'imi�'";ok=false;}
-    	if (tfOdp2.getText().equals("")) {err+="\n* pole 'nazwisko'";ok=false;}
-    	if (tfOdp3.getText().equals("")) {err+="\n* pole 'grupa'";ok=false;}
-    	if (tfOdp4.getText().equals("")) {err+="\n* pole 'has�o masło'";ok=false;}
-    	if (G1.getSelectedToggle() == null) {err+="\n* pole 'random'";ok=false;}
-    	if ((cb_zakres.getValue() == null) || (cb_zakres.equals(""))) {err+="\n* pole 'chceckbox'";ok=false;}	
-    	if (ok){
-    		System.out.println("Pola wype�nione");
-    		return true;
-    		
-    	} else{
-    		System.out.println("Pola niewype�nione");
-    		Alert e = new Alert(AlertType.ERROR);
-        	e.setContentText(err);
-        	e.setHeaderText("B��d, nie wype�ni�e� p�l");
-        	e.setTitle("B��d");
-        	e.showAndWait(); 
-    		return false;
-    	}
-    }
-    
-    
-    
-    
 
-    @FXML
-    void actionZamknij(MouseEvent event) throws IOException {
-    	Stage stage = new Stage();
-    	Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/app/View/PanelView.fxml"));
-    	Scene scene = new Scene(parent);
-    	stage.setScene(scene);
-    	stage.setTitle("Logowanie");
-    	stage.show();
-    	((Node)(event.getSource())).getScene().getWindow().hide();
-    }
-    
-    
     public void initialize() throws SQLException {
     	db = new DBConnector();
     	this.select();
-    	this.edit();
+    	this.editPytania();
     	tvPytania.setEditable(true);
     	cb_zakres.setItems(zakres);
     }
     
-    
-
 
     public void select() throws SQLException {
-
+System.out.println("robię select");
 	    Connection conn = db.Connection();
 		data = FXCollections.observableArrayList();
 		ResultSet rs = conn.createStatement().executeQuery("select * from pytania");
 		while(rs.next()){
-			data.add(new Pytania(rs.getInt(1), rs.getString(3), rs.getString(2),
+			data.add(new Pytania(rs.getInt(1), rs.getString(2), rs.getString(3),
 					rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8)));
 		}
 
 		colid.setCellValueFactory(new PropertyValueFactory<Pytania,Integer>("idp"));
-		colpytanie.setCellValueFactory(new PropertyValueFactory<Pytania,String>("zakres"));
-		colodp1.setCellValueFactory(new PropertyValueFactory<Pytania,String>("pytanie"));
-		colodp2.setCellValueFactory(new PropertyValueFactory<Pytania,String>("odp1"));
-		colodp3.setCellValueFactory(new PropertyValueFactory<Pytania,String>("odp2"));
-		colodp4.setCellValueFactory(new PropertyValueFactory<Pytania,String>("odp3"));
-		colodp5.setCellValueFactory(new PropertyValueFactory<Pytania,String>("odp4"));
+		colpytanie.setCellValueFactory(new PropertyValueFactory<Pytania,String>("pytanie"));
+		colodp1.setCellValueFactory(new PropertyValueFactory<Pytania,String>("odp1"));
+		colodp2.setCellValueFactory(new PropertyValueFactory<Pytania,String>("odp2"));
+		colodp3.setCellValueFactory(new PropertyValueFactory<Pytania,String>("odp3"));
+		colodp4.setCellValueFactory(new PropertyValueFactory<Pytania,String>("odp4"));
+		colodp5.setCellValueFactory(new PropertyValueFactory<Pytania,String>("zakres"));
 		colnrodp.setCellValueFactory(new PropertyValueFactory<Pytania,Integer>("odppopr"));
 		tvPytania.setItems(null);
 		tvPytania.setItems(data);
-
+		conn.close();
     }
     
     
-    void edit() {
+    void editPytania() throws SQLException {
     	colpytanie.setCellFactory(TextFieldTableCell.<Pytania>forTableColumn());
     	colpytanie.setOnEditCommit(
 	            (CellEditEvent<Pytania, String> t) -> {
-	                ((Pytania) t.getTableView().getItems().get(
-	                        t.getTablePosition().getRow())
-	                        ).setPytanie(t.getNewValue());
+	                try {
+						((Pytania) t.getTableView().getItems().get(
+						        t.getTablePosition().getRow())
+						        ).setPytanie(t.getNewValue());
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
 	        });
+    	colodp1.setCellFactory(TextFieldTableCell.<Pytania>forTableColumn());
+    	colodp1.setOnEditCommit(
+	            (CellEditEvent<Pytania, String> t) -> {
+	                try {
+						((Pytania) t.getTableView().getItems().get(
+						        t.getTablePosition().getRow())
+						        ).setOdp1(t.getNewValue());
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+	        });
+    	colodp2.setCellFactory(TextFieldTableCell.<Pytania>forTableColumn());
+    	colodp2.setOnEditCommit(
+	            (CellEditEvent<Pytania, String> t) -> {
+	                try {
+						((Pytania) t.getTableView().getItems().get(
+						        t.getTablePosition().getRow())
+						        ).setOdp2(t.getNewValue());
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+	        });
+    	colodp3.setCellFactory(TextFieldTableCell.<Pytania>forTableColumn());
+    	colodp3.setOnEditCommit(
+	            (CellEditEvent<Pytania, String> t) -> {
+	                try {
+						((Pytania) t.getTableView().getItems().get(
+						        t.getTablePosition().getRow())
+						        ).setOdp3(t.getNewValue());
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+	        });
+    	colodp4.setCellFactory(TextFieldTableCell.<Pytania>forTableColumn());
+    	colodp4.setOnEditCommit(
+	            (CellEditEvent<Pytania, String> t) -> {
+	                try {
+						((Pytania) t.getTableView().getItems().get(
+						        t.getTablePosition().getRow())
+						        ).setOdp4(t.getNewValue());
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+	        });
+    	
+      	colodp5.setCellFactory(TextFieldTableCell.<Pytania>forTableColumn());
+    	colodp5.setOnEditCommit(
+	            (CellEditEvent<Pytania, String> t) -> {
+	                try {
+						((Pytania) t.getTableView().getItems().get(
+						        t.getTablePosition().getRow())
+						        ).setZakres(t.getNewValue());
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+	        });
+    	
+    	colnrodp.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+    	colnrodp.setOnEditCommit(
+	            (CellEditEvent<Pytania, Integer> t) -> {
+	                try {
+						((Pytania) t.getTableView().getItems().get(
+						        t.getTablePosition().getRow())
+						        ).setOdppopr(t.getNewValue());
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+	        }); 
     }
     
-
+    
     @FXML
     void deleteAction(MouseEvent event) throws SQLException {
      	if (!Objects.isNull(tvPytania.getSelectionModel().getSelectedItem())){
@@ -262,7 +310,6 @@ public class PytaniaController {
 	        			System.out.println("Usuwanie...");
 						tvPytania.getSelectionModel().getSelectedItem().delete();
 					} catch (SQLException e) {
-						// TODO Auto-generated catch block
 						System.out.println("Błą przy usuwaniu "+e.getMessage());
 						e.printStackTrace();
 					}
@@ -272,6 +319,18 @@ public class PytaniaController {
     	} 
     
 
+    }
+    
+    
+    @FXML
+    void actionZamknij(MouseEvent event) throws IOException {
+    	Stage stage = new Stage();
+    	Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/app/View/PanelView.fxml"));
+    	Scene scene = new Scene(parent);
+    	stage.setScene(scene);
+    	stage.setTitle("Logowanie");
+    	stage.show();
+    	((Node)(event.getSource())).getScene().getWindow().hide();
     }
 
 

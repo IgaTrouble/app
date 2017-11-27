@@ -16,12 +16,12 @@
       <TableView fx:id="tvPytania" editable="true" layoutX="10.0" layoutY="14.0" prefHeight="310.0" prefWidth="996.0">
         <columns>
           <TableColumn fx:id="colid" prefWidth="42.0" text="ID" />
+            <TableColumn fx:id="colodp5" prefWidth="97.0" text="zakres" />
           <TableColumn fx:id="colpytanie" prefWidth="325.0" text="Pytanie" />
-            <TableColumn fx:id="colodp1" prefWidth="103.0" text="Zakres" />
-            <TableColumn fx:id="colodp2" prefWidth="119.0" text="Odpowiedź 1" />
-            <TableColumn fx:id="colodp3" prefWidth="108.0" text="Odpowiedź 2" />
-            <TableColumn fx:id="colodp4" prefWidth="132.0" text="Odpowiedź 3" />
-            <TableColumn fx:id="colodp5" prefWidth="97.0" text="Odpowiedź 4" />
+            <TableColumn fx:id="colodp1" prefWidth="103.0" text="Odpowiedź 1" />
+            <TableColumn fx:id="colodp2" prefWidth="119.0" text="Odpowiedź 2" />
+            <TableColumn fx:id="colodp3" prefWidth="108.0" text="Odpowiedź 3" />
+            <TableColumn fx:id="colodp4" prefWidth="132.0" text="Odpowiedź 4" />
             <TableColumn fx:id="colnrodp" prefWidth="69.0" text="Nr.odp" />
         </columns>
       </TableView>
