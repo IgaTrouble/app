@@ -5,6 +5,7 @@ package app.Controller;
 import java.sql.SQLException;
 
 import app.Database.DBConnector;
+import app.Model.App;
 import javafx.fxml.FXML;
 	import javafx.fxml.FXMLLoader;
 	import javafx.scene.Node;
@@ -42,6 +43,12 @@ import javafx.fxml.FXML;
 
 	    @FXML
 	    void actionStart(MouseEvent event) throws IOException {
+	    	App.liczba_pytan=10;
+	    	App.zakres_git=cb_git.isSelected();
+	    	App.zakres_sql=cb_sql.isSelected();
+	    	App.zakres_java=cb_java.isSelected();
+	    	App.zakres_python=cb_python.isSelected();
+	    	
 	     	Stage stage = new Stage();
 	    	Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/app/View/TestView.fxml"));
 	    	Scene scene = new Scene(parent);
