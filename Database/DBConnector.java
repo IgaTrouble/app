@@ -6,7 +6,7 @@ package app.Database;
 
 	public class DBConnector {
 		public Connection Connection() throws SQLException {
-			return DriverManager.getConnection("jdbc:mysql://localhost:3306/Ankieta", "root", "dupa");
+			return DriverManager.getConnection("jdbc:mysql://localhost:3306/Ankieta", "root", "root");
 		}
 	}
 
