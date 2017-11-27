@@ -9,7 +9,6 @@ import java.util.Optional;
 
 import app.Database.DBConnector;
 import app.Model.Loginy;
-import app.Model.Pytania;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -243,7 +242,6 @@ public class KursanciKontroller {
     }
     
     public void initialize() {
-    	//btnZamknij.setText(LoginController.name + "\nDziekujemy za zalogowanie");
     	db = new DBConnector();
     	 	
     	colEmail.setCellValueFactory(new PropertyValueFactory<Loginy,String>("email"));

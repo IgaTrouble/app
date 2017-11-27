@@ -1,9 +1,8 @@
 package app.Model;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+
 
 import app.Database.DBConnector;
 
@@ -38,7 +37,7 @@ public class Loginy {
 			conn.createStatement().executeUpdate(sql);
 			conn.close();			
 		} catch (SQLException e) {
-			System.out.println("B³¹d zapisu do DB : "+e.getMessage());
+			System.out.println("Bï¿½ï¿½d zapisu do DB : "+e.getMessage());
 			conn.close();			
 		}
 	}
@@ -59,7 +58,7 @@ public class Loginy {
 			conn.createStatement().executeUpdate(sql);
 			conn.close();			
 		} catch (SQLException e) {
-			System.out.println("B³¹d zapisu do DB : "+e.getMessage());
+			System.out.println("Bï¿½ï¿½d zapisu do DB : "+e.getMessage());
 			conn.close();			
 		}
 	}
@@ -79,7 +78,7 @@ public class Loginy {
 			conn.createStatement().executeUpdate(sql);
 			conn.close();			
 		} catch (SQLException e) {
-			System.out.println("B³¹d zapisu do DB : "+e.getMessage());
+			System.out.println("Bï¿½ï¿½d zapisu do DB : "+e.getMessage());
 			conn.close();			
 		}
 	}
@@ -107,7 +106,7 @@ public class Loginy {
 			conn.createStatement().executeUpdate(sql);
 			conn.close();			
 		} catch (SQLException e) {
-			System.out.println("B³¹d zapisu do DB : "+e.getMessage());
+			System.out.println("Bï¿½ï¿½d zapisu do DB : "+e.getMessage());
 			conn.close();			
 		}
 	}
@@ -135,7 +134,7 @@ public class Loginy {
 			conn.close();
 			return true;
 		} catch (SQLException e) {
-			System.out.println("B³¹d zapisu do DB : "+e.getMessage());
+			System.out.println("Bï¿½ï¿½d zapisu do DB : "+e.getMessage());
 			conn.close();
 			
 			return false;
@@ -155,7 +154,7 @@ public class Loginy {
 			conn.close();
 			return true;
 		} catch (SQLException e) {
-			System.out.println("B³¹d kasowania z DB : "+e.getMessage());
+			System.out.println("Bï¿½ï¿½d kasowania z DB : "+e.getMessage());
 			conn.close();
 			
 			return false;

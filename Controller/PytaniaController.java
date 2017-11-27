@@ -8,7 +8,6 @@ import java.util.Objects;
 import java.util.Optional;
 
 import app.Database.DBConnector;
-
 import app.Model.Pytania;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,7 +26,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -126,15 +127,33 @@ public class PytaniaController {
     				 tfOdp3.getText(),  tfOdp4.getText(), odp);
     			
     		try {
-				l.savedotb();
+				l.savePyt();
 				select();
-				// wyczysc();
+				clearPyt();
 			} catch (SQLException e) {
-				System.out.println("Nie uda�o si� zapisa�");
+				System.out.println("Nie udało się zapisać");
 				e.printStackTrace();
 			}
     	}
     }
+    
+    
+
+	public void clearPyt() {
+		tfPytanie.clear();
+		tfOdp1.clear();
+		tfOdp2.clear();
+		tfOdp3.clear();
+		tfOdp4.clear();
+		G1.selectToggle(null);
+		cb_zakres.setValue(null);
+		
+		
+		
+		
+		
+	}
+    
     
     
     public boolean czy_wypelnione(){
@@ -182,6 +201,7 @@ public class PytaniaController {
     public void initialize() throws SQLException {
     	db = new DBConnector();
     	this.select();
+    	this.edit();
     	tvPytania.setEditable(true);
     	cb_zakres.setItems(zakres);
     }
@@ -199,7 +219,6 @@ public class PytaniaController {
 					rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8)));
 		}
 
-
 		colid.setCellValueFactory(new PropertyValueFactory<Pytania,Integer>("idp"));
 		colpytanie.setCellValueFactory(new PropertyValueFactory<Pytania,String>("zakres"));
 		colodp1.setCellValueFactory(new PropertyValueFactory<Pytania,String>("pytanie"));
@@ -212,6 +231,18 @@ public class PytaniaController {
 		tvPytania.setItems(data);
 
     }
+    
+    
+    void edit() {
+    	colpytanie.setCellFactory(TextFieldTableCell.<Pytania>forTableColumn());
+    	colpytanie.setOnEditCommit(
+	            (CellEditEvent<Pytania, String> t) -> {
+	                ((Pytania) t.getTableView().getItems().get(
+	                        t.getTablePosition().getRow())
+	                        ).setPytanie(t.getNewValue());
+	        });
+    }
+    
 
     @FXML
     void deleteAction(MouseEvent event) throws SQLException {
@@ -243,10 +274,5 @@ public class PytaniaController {
 
     }
 
-    @FXML
-    void editAction(MouseEvent event) {
-
-    }
-    
 
 }
