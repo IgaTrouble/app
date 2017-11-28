@@ -197,6 +197,9 @@ import javafx.scene.input.MouseEvent;
 	    	
 	    	if (sIle.getValue()>ilepytan)
 	    			sIle.setValue(ilepytan);
+	    	if ((ilepytan>0)&&(sIle.getValue()<1))
+	    			sIle.setValue(1);
+	    				
 	    	lblIle.setText(""+(int)sIle.getValue());
 	    }
 	    
