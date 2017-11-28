@@ -73,6 +73,12 @@ import javafx.scene.input.MouseEvent;
 
 	    @FXML
 	    private Label lblIle;
+	    
+	    @FXML
+	    private Label lblMIN;
+
+	    @FXML
+	    private Label lblMAX;
 
 	    @FXML
 	    void actionStart(MouseEvent event) throws IOException {
@@ -82,7 +88,7 @@ import javafx.scene.input.MouseEvent;
 		    	cb_frontend.isSelected() ||
 		    	cb_spring.isSelected() ||
 		    	cb_java.isSelected()) {
-			    	App.liczba_pytan=10;
+			    	App.liczba_pytan=(int)sIle.getValue();
 			    	App.zakres_git=cb_git.isSelected();
 			    	App.zakres_sql=cb_sql.isSelected();
 			    	App.zakres_java=cb_java.isSelected();
@@ -90,14 +96,22 @@ import javafx.scene.input.MouseEvent;
 			    	App.zakres_frontend=cb_frontend.isSelected();
 			    	App.zakres_spring=cb_spring.isSelected();
 			    	
-			    	
-			     	Stage stage = new Stage();
-			    	Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/app/View/TestView.fxml"));
-			    	Scene scene = new Scene(parent);
-			    	stage.setScene(scene);
-			    	stage.setTitle("Test");
-			    	stage.show();
-			    	((Node)(event.getSource())).getScene().getWindow().hide();
+			    	if (App.liczba_pytan>0) {
+				     	Stage stage = new Stage();
+				    	Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/app/View/TestView.fxml"));
+				    	Scene scene = new Scene(parent);
+				    	stage.setScene(scene);
+				    	stage.setTitle("Test");
+				    	stage.show();
+				    	((Node)(event.getSource())).getScene().getWindow().hide();
+			    	} else {
+			    		System.out.println("Określ liczbę pytań w teście");
+				    	Alert e = new Alert(AlertType.CONFIRMATION);
+			        	e.setContentText("Informacja");
+			        	e.setHeaderText("Błąd, nie została wybrana liczba pytań");
+			        	e.setTitle("Błąd");
+			        	e.showAndWait();
+			    	}
 		    } else {
 		    	System.out.println("nie został wybrany zakres pytań");
 		    	Alert e = new Alert(AlertType.ERROR);
@@ -178,7 +192,8 @@ import javafx.scene.input.MouseEvent;
 	    	else
 	    		sIle.setMin(0);
 	    	
-	    
+	    	lblMIN.setText(""+(int)sIle.getMin());
+	    	lblMAX.setText(""+(int)sIle.getMax());
 	    	
 	    	if (sIle.getValue()>ilepytan)
 	    			sIle.setValue(ilepytan);
@@ -187,7 +202,7 @@ import javafx.scene.input.MouseEvent;
 	    
 	    @FXML
 	    void actionChange(MouseEvent event) {
-	    	lblIle.setText(""+sIle.getValue());
+	    	lblIle.setText(""+(int)sIle.getValue());
 	    }
 
 	    @FXML
