@@ -265,6 +265,7 @@ import javafx.scene.input.MouseEvent;
 	    		cb_frontend.setSelected(false);
 
 	    	}
+	    	policz();
  	
 
 	    }
