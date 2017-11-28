@@ -1,10 +1,13 @@
 package app.Model;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import app.Controller.PytaniaController;
 import app.Database.DBConnector;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
@@ -149,7 +152,7 @@ public class Pytania {
 			conn.close();
 			return true;
 		} catch (SQLException e) {
-			System.out.println("B��d zapisu do DB : "+e.getMessage());
+			System.out.println("Błąd zapisu do DB : "+e.getMessage());
 			conn.close();
 			
 			return false;
@@ -190,5 +193,7 @@ public class Pytania {
 	}
 	
 	}
+	
+	
 
 }

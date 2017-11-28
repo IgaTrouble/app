@@ -37,7 +37,7 @@ public class Loginy {
 			conn.createStatement().executeUpdate(sql);
 			conn.close();			
 		} catch (SQLException e) {
-			System.out.println("B��d zapisu do DB : "+e.getMessage());
+			System.out.println("Błąd zapisu do DB : "+e.getMessage());
 			conn.close();			
 		}
 	}
@@ -58,7 +58,7 @@ public class Loginy {
 			conn.createStatement().executeUpdate(sql);
 			conn.close();			
 		} catch (SQLException e) {
-			System.out.println("B��d zapisu do DB : "+e.getMessage());
+			System.out.println("Błąd zapisu do DB : "+e.getMessage());
 			conn.close();			
 		}
 	}
@@ -78,7 +78,7 @@ public class Loginy {
 			conn.createStatement().executeUpdate(sql);
 			conn.close();			
 		} catch (SQLException e) {
-			System.out.println("B��d zapisu do DB : "+e.getMessage());
+			System.out.println("Błąd zapisu do DB : "+e.getMessage());
 			conn.close();			
 		}
 	}
@@ -106,7 +106,7 @@ public class Loginy {
 			conn.createStatement().executeUpdate(sql);
 			conn.close();			
 		} catch (SQLException e) {
-			System.out.println("B��d zapisu do DB : "+e.getMessage());
+			System.out.println("Błąd zapisu do DB : "+e.getMessage());
 			conn.close();			
 		}
 	}
@@ -134,7 +134,7 @@ public class Loginy {
 			conn.close();
 			return true;
 		} catch (SQLException e) {
-			System.out.println("B��d zapisu do DB : "+e.getMessage());
+			System.out.println("Błąd zapisu do DB : "+e.getMessage());
 			conn.close();
 			
 			return false;
@@ -154,7 +154,7 @@ public class Loginy {
 			conn.close();
 			return true;
 		} catch (SQLException e) {
-			System.out.println("B��d kasowania z DB : "+e.getMessage());
+			System.out.println("Błąd kasowania z DB : "+e.getMessage());
 			conn.close();
 			
 			return false;

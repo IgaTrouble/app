@@ -183,14 +183,36 @@ public class PytaniaController {
 	System.out.println("refresh");
 	}
 	
-	
+	public  void pobierz_zakres(ObservableList<String> s)  {
+		ResultSet rs;
+		//DBConnector db=new DBConnector();
+		try {
+			Connection conn = db.Connection();
+			rs = conn.createStatement().executeQuery("select zakres from zakresy;");
+			while(rs.next()){
+				s.add(rs.getString(1));
+			}
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+				
+	}
 	
     public void initialize() throws SQLException {
     	db = new DBConnector();
     	this.select();
     	this.editPytania();
     	tvPytania.setEditable(true);
+    	
     	cb_zakres.setItems(zakres);
+    	
+    	/*
+    	ObservableList<String> list = FXCollections.observableArrayList();
+    	pobierz_zakres(list);
+    	cb_zakres.setItems(list);
+    	*/
     }
     
 

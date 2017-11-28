@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="486.0" prefWidth="717.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Controller.StatystykiController">
+   <children>
+      <Button fx:id="btnZamknij" layoutX="643.0" layoutY="447.0" mnemonicParsing="false" onMouseClicked="#ActionZamknij" text="Zamknij" />
+      <Label layoutX="53.0" layoutY="36.0" text="Moje wyniki - statystyki">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <Separator layoutX="38.0" layoutY="72.0" prefHeight="0.0" prefWidth="364.0" />
+      <Label layoutX="39.0" layoutY="94.0" text="Imię i nazwisko :" />
+      <Label layoutX="39.0" layoutY="121.0" text="Grupa:" />
+      <Label layoutX="39.0" layoutY="174.0" text="Liczba testów rozpoczętych:" />
+      <Label layoutX="39.0" layoutY="203.0" prefHeight="17.0" prefWidth="175.0" text="Liczba testów zakończonych:" />
+      <Label layoutX="39.0" layoutY="233.0" prefHeight="17.0" prefWidth="175.0" text="Łączna liczba odpowiedzi:" />
+      <Label layoutX="39.0" layoutY="261.0" prefHeight="17.0" prefWidth="175.0" text="Liczba odpowiedzi poprawnych:" />
+      <Label layoutX="39.0" layoutY="289.0" prefHeight="17.0" prefWidth="195.0" text="Liczba odpowiedzi niepoprawnych:" />
+      <Separator layoutX="38.0" layoutY="152.0" prefHeight="0.0" prefWidth="364.0" />
+      <Label layoutX="39.0" layoutY="362.0" prefHeight="17.0" prefWidth="231.0" text="Uśredniony wynik zakończonych testów:" />
+      <Label fx:id="lblKursant" layoutX="158.0" layoutY="94.0" prefHeight="17.0" prefWidth="244.0" text="Label">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblGrupa" layoutX="158.0" layoutY="121.0" prefHeight="17.0" prefWidth="244.0" text="Label">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblTestyAll" layoutX="237.0" layoutY="174.0" prefHeight="17.0" prefWidth="164.0" text="Label">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblTestyZakonczone" layoutX="237.0" layoutY="203.0" prefHeight="17.0" prefWidth="164.0" text="Label">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblOdpowiedziAll" layoutX="237.0" layoutY="235.0" prefHeight="17.0" prefWidth="164.0" text="Label">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblOdpowiedziPopr" layoutX="237.0" layoutY="261.0" prefHeight="17.0" prefWidth="164.0" text="Label">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblOdpowiedziNiep" layoutX="237.0" layoutY="289.0" prefHeight="17.0" prefWidth="164.0" text="Label">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblOdpowiedziWynik" layoutX="276.0" layoutY="357.0" prefHeight="17.0" prefWidth="87.0" text="Label">
+         <font>
+            <Font name="Arial Bold" size="23.0" />
+         </font>
+      </Label>
+      <PieChart fx:id="pic" layoutX="402.0" layoutY="128.0" legendVisible="false" prefHeight="283.0" prefWidth="311.0" />
+      <ProgressBar fx:id="pbWynik" layoutX="220.0" layoutY="401.0" prefHeight="34.0" prefWidth="200.0" progress="0.68">
+         <effect>
+            <Reflection bottomOpacity="0.17" fraction="1.0" topOpacity="0.0">
+               <input>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow color="#ebe2e2" height="35.83" radius="12.965" width="18.03" />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </input>
+            </Reflection>
+         </effect>
+      </ProgressBar>
+   </children>
+</AnchorPane>
