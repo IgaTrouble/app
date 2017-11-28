@@ -9,4 +9,8 @@ public class App {
 	public static boolean zakres_java;
 	public static boolean zakres_frontend;
 	public static boolean zakres_spring;
+	public static String email;
+	public static String imie;
+	public static String nazwisko;
+	public static String typ;
 }

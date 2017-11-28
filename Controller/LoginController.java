@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import app.Database.DBConnector;
+import app.Model.App;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -65,10 +66,14 @@ public class LoginController {
     void logowanie() throws SQLException, IOException {
     	Connection conn1 = db.Connection();
     	Statement stmt = conn1.createStatement();
-    	ResultSet rs = stmt.executeQuery("select typ from loginy where email ='"+ txt_log.getText()+"' and pass='"+pf_pass.getText()+"'");
+    	ResultSet rs = stmt.executeQuery("select typ,email,imie,nazwisko from loginy where email ='"+ txt_log.getText()+"' and pass='"+pf_pass.getText()+"'");
     	if(rs.next()) {
     		flagLog = true;
     		typ = rs.getString("typ");
+    		App.typ=typ;
+    		App.email=rs.getString("email");
+    		App.imie=rs.getString("imie");
+    		App.nazwisko=rs.getString("nazwisko");
     		System.out.println(typ);
     		System.out.println("rs");
     		Stage stage = new Stage();

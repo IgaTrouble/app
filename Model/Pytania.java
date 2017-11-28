@@ -19,6 +19,15 @@ public class Pytania {
 	static String sqlUpd;
 	DBConnector db;
 
+	
+	
+	@Override
+	public String toString() {
+		return "Pytania [idp=" + idp + ", zakres=" + zakres + ", pytanie=" + pytanie + ", odp1=" + odp1 + ", odp2="
+				+ odp2 + ", odp3=" + odp3 + ", odp4=" + odp4 + ", odppopr=" + odppopr + "]";
+	}
+
+
 	public Pytania(Integer idp, String zakres, String pytanie, String odp1, String odp2, String odp3, String odp4,
 			Integer odppopr) {
 		super();
