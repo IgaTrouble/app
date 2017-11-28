@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Controller.PanelController">
    <children>
       <MenuBar fx:id="mb_panel" layoutY="2.0">
@@ -44,7 +43,7 @@
       </Button>
       <ImageView fitHeight="418.0" fitWidth="401.0" layoutX="1.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../logo_pionowe_reaktor.png" />
+            <Image url="@../db/logo_pionowe_reaktor.png" />
          </image>
          <effect>
             <Glow />

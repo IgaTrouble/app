@@ -65,6 +65,7 @@ public class Pytania {
         	e.setHeaderText("Błąd, podano błędny zakres pytań");
         	e.setTitle("Błąd");
         	e.showAndWait();
+        	pc.refresh();
 		}
 		
 		
@@ -126,13 +127,14 @@ public class Pytania {
 			this.update();
 		} else {
 			Alert e = new Alert(AlertType.ERROR);
-        	e.setContentText("Błąd"); //to powinno być w pytania controlerze przy edit
+        	e.setContentText("Błąd");
         	e.setHeaderText("Błąd, poprawna odpowiedz może zawierać się w przedziale 1-4");
         	e.setTitle("Błąd");
         	e.showAndWait();
 		}
 		
-	}
+	}	
+	
 
 	public boolean savePyt() throws SQLException {
 		db = new DBConnector();

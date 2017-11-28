@@ -302,6 +302,7 @@ System.out.println("robię select");
     }
     
     
+    
     @FXML
     void deleteAction(MouseEvent event) throws SQLException {
      	if (!Objects.isNull(tvPytania.getSelectionModel().getSelectedItem())){
