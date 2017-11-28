@@ -13,4 +13,11 @@ public class App {
 	public static String imie;
 	public static String nazwisko;
 	public static String typ;
+	public static int ilegit;
+	public static int ilesql;
+	public static int ilepython;
+	public static int ilejava;
+	public static int ilefrontend;
+	public static int ilespring;
+	
 }

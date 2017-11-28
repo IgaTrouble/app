@@ -130,9 +130,9 @@ public class TestController {
     	System.out.println("Przerwij");
     	Alert a = new Alert(AlertType.CONFIRMATION);
     	a.setHeaderText("Przerwanie testu");
-    	a.setContentText("Czy przerwa� test ?\n Twoje dotychczasowe odpowiedzi zosta�y zapisane, ale nie wlicz� si� do �redniej.");
+    	a.setContentText("Czy przerwać test ?\n Twoje dotychczasowe odpowiedzi zostały zapisane, ale nie wliczą się do średniej.");
     	a.setTitle("Potwierdzenie przerwania testu");
-    	ButtonType btTAK = new ButtonType("TAK, przerwij�");
+    	ButtonType btTAK = new ButtonType("TAK, przerwij!");
     	ButtonType btNIE = new ButtonType("NIE");
     	a.getButtonTypes().setAll(btTAK, btNIE);
     	Optional<ButtonType> result = a.showAndWait();
@@ -162,9 +162,9 @@ public class TestController {
     		case 2:im2nieok.setVisible(true);break;
     		case 3:im3nieok.setVisible(true);break;
     		case 4:im4nieok.setVisible(true);break;
-    		}
+    		}    		
+    	} else
     		ilepopr++;
-    	}
     	switch (pytania.get(current_question).getOdppopr()){
     	case 1:im1ok.setVisible(true);break;
 		case 2:im2ok.setVisible(true);break;
@@ -172,13 +172,15 @@ public class TestController {
 		case 4:im4ok.setVisible(true);break;
     	}
     	
-    	Odpowiedzi o = new Odpowiedzi(numertestu,current_question,wybor);
+    	Odpowiedzi o = new Odpowiedzi(numertestu,pytania.get(current_question).getIdp(),wybor);
+    	odpowiedzi.put(pytania.get(current_question), wybor);
     	o.save();
+    	System.out.println("Ilepopr="+ilepopr);
     }
 
     @FXML
     void actionKoniec(MouseEvent event) {
-    	System.out.println("Koniec");
+    	System.out.println("Koniec = "+(int)(100.0*(double)ilepopr/(double)pytanie));
     	Testy.update_wynik(numertestu,(int)(100.0*(double)ilepopr/(double)pytanie));
     	zamknij();
     }
@@ -248,9 +250,9 @@ public class TestController {
     private void nextQuestion() throws IOException{
     	if ((pytania==null)||(pytania.size()<App.liczba_pytan)){
 			Alert e = new Alert(AlertType.ERROR);
-        	e.setContentText("Niewystarczaj�ca liczba pyta� do przeprowadzenia testu !");
-        	e.setHeaderText("B��d");
-        	e.setTitle("B��d");
+        	e.setContentText("Niewystarczająca liczba pytań do przeprowadzenia testu !");
+        	e.setHeaderText("Błąd");
+        	e.setTitle("Błąd");
         	e.showAndWait();
         	zamknij();
         	return;
@@ -293,9 +295,9 @@ public class TestController {
     	} else
     	{
     		Alert e = new Alert(AlertType.ERROR);
-        	e.setContentText("Nie ma ju� pyta� do zadania, koniec testu");
-        	e.setHeaderText("B��d");
-        	e.setTitle("B��d");
+        	e.setContentText("Nie ma już pytań do zadania, koniec testu");
+        	e.setHeaderText("Błąd");
+        	e.setTitle("Błąd");
         	e.showAndWait();
         	btnKoniec.setVisible(false);
         	btnNext.setVisible(false);
@@ -306,7 +308,7 @@ public class TestController {
     
     public int ile_testow(){
     	int ile=0;
-    	String sql="select count(*) from testy where kursant='"+App.email+"';";
+    	String sql="select count(*) from testy where kursant='"+App.email+"' and wynik is not null;";
     	System.out.println(sql);
  	
     	try {
@@ -320,7 +322,7 @@ public class TestController {
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			System.out.println("Wystapi� b��d "+e.getMessage());
+			System.out.println("Wystapił błąd "+e.getMessage());
 			e.printStackTrace();
 		}
     	
@@ -343,7 +345,7 @@ public class TestController {
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			System.out.println("Wystapi� b��d "+e.getMessage());
+			System.out.println("Wystapił błąd "+e.getMessage());
 			e.printStackTrace();
 		}
     	
@@ -408,7 +410,7 @@ public class TestController {
     	lblSrednia.setText(String.format("%d", srednia()));
     	numertestu=Testy.createTest(App.email);
     	if (numertestu<0){
-    		System.out.println("Wyst�pi� nieprzewidziany b��d, nie da si� doda� testu do bazy danych !");
+    		System.out.println("Wystąpił nieprzewidziany błąd, nie da się dodać testu do bazy danych !");
     		System.exit(100);
     	}
     	;
@@ -417,7 +419,7 @@ public class TestController {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("Nieprzewidziany b��d, nie uda�o si� wczyta� listy pyta� !");
+			System.out.println("Nieprzewidziany błądd, nie udało się wczytać listy pytań !");
 			System.exit(100);
 		}
     	    	

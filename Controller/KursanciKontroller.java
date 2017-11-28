@@ -128,26 +128,26 @@ public class KursanciKontroller {
     }
     
     public boolean czy_wypelnione(){
-    	System.out.println("Weryfikacja czy wype�nione wszystkie pola");
-    	String err="Nie wype�ni�e� wymaganych p�l:";
+    	System.out.println("Weryfikacja czy wypełnione wszystkie pola");
+    	String err="Nie wypełniłeś wymaganych pól:";
     	boolean ok=true;
     	if (txEmail.getText().equals("")) { err+="\n* pole 'login/email'"; ok=false;}
-    	if (txImie.getText().equals("")) {err+="\n* pole 'imi�'";ok=false;}
+    	if (txImie.getText().equals("")) {err+="\n* pole 'imię'";ok=false;}
     	if (txNazwisko.getText().equals("")) {err+="\n* pole 'nazwisko'";ok=false;}
     	if (txNazwisko.getText().equals("")) {err+="\n* pole 'grupa'";ok=false;}
-    	if (pwdPass1.getText().equals("")) {err+="\n* pole 'has�o'";ok=false;}
-    	if (pwdPass2.getText().equals("")) {err+="\n* pole 'powt�rz has�o'";ok=false;}
-    	if (!pwdPass1.getText().equals(pwdPass2.getText())) {err+="\n* Has�a nie s� zgodne !"; ok=false;}
+    	if (pwdPass1.getText().equals("")) {err+="\n* pole 'hasło'";ok=false;}
+    	if (pwdPass2.getText().equals("")) {err+="\n* pole 'powtórz hasło'";ok=false;}
+    	if (!pwdPass1.getText().equals(pwdPass2.getText())) {err+="\n* Hasła nie są zgodne !"; ok=false;}
     	if (ok){
-    		System.out.println("Pola wype�nione");
+    		System.out.println("Pola wypełnione");
     		return true;
     		
     	} else{
-    		System.out.println("Pola niewype�nione");
+    		System.out.println("Pola niewypełnione");
     		Alert e = new Alert(AlertType.ERROR);
         	e.setContentText(err);
-        	e.setHeaderText("B��d, nie wype�ni�e� p�l");
-        	e.setTitle("B��d");
+        	e.setHeaderText("Błąd, nie wypełniłeś pól");
+        	e.setTitle("Błąd");
         	e.showAndWait(); 
     		return false;
     	}
@@ -176,9 +176,9 @@ public class KursanciKontroller {
 	    	if (!Objects.isNull(selLogin)){
 	    		Alert a = new Alert(AlertType.CONFIRMATION);
 	        	a.setHeaderText("Usuwanie");
-	        	a.setContentText("Czy chcesz usun�� kursanta "+selLogin);
-	        	a.setTitle("Potwierdzenie usuni�cia");
-	        	ButtonType btTAK = new ButtonType("TAK, Usu�");
+	        	a.setContentText("Czy chcesz usunąć kursanta "+selLogin);
+	        	a.setTitle("Potwierdzenie usunięcia");
+	        	ButtonType btTAK = new ButtonType("TAK, Usuń!");
 	        	ButtonType btNIE = new ButtonType("NIE");
 	        	a.getButtonTypes().setAll(btTAK, btNIE);
 	        	Optional<ButtonType> result = a.showAndWait();
@@ -188,7 +188,7 @@ public class KursanciKontroller {
 						tvKursanci.getSelectionModel().getSelectedItem().delete();
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
-						System.out.println("B��d przy usuwaniu "+e.getMessage());
+						System.out.println("Błąd przy usuwaniu "+e.getMessage());
 						e.printStackTrace();
 					}
 	        		select();
@@ -217,7 +217,7 @@ public class KursanciKontroller {
 	    	}
 	    	conn.close();
     	} catch (SQLException e){
-    		System.out.println("Kursanci wyst�pi� b��d +"+e.getMessage());
+    		System.out.println("Kursanci wystąpił błąd +"+e.getMessage());
     		e.printStackTrace();
     	}
     	
@@ -237,7 +237,7 @@ public class KursanciKontroller {
     	stage.setScene(scene);
     	stage.setTitle("Logowanie");
     	stage.show();
-        System.out.println("Zamykamy okienko bie��ce");
+        System.out.println("Zamykamy okienko bieżące");
     	((Node)(event.getSource())).getScene().getWindow().hide();
     }
     

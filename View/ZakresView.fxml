@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -14,27 +15,27 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <CheckBox fx:id="cb_sql" layoutX="13.0" layoutY="50.0" mnemonicParsing="false" text="SQL">
+      <CheckBox fx:id="cb_sql" layoutX="13.0" layoutY="50.0" mnemonicParsing="false" onMouseClicked="#actionSQL" text="SQL">
          <font>
             <Font size="14.0" />
          </font>
       </CheckBox>
-      <CheckBox fx:id="cb_git" layoutX="13.0" layoutY="80.0" mnemonicParsing="false" text="GIT">
+      <CheckBox fx:id="cb_git" layoutX="13.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#actionGit" text="GIT">
          <font>
             <Font size="14.0" />
          </font>
       </CheckBox>
-      <CheckBox fx:id="cb_python" layoutX="13.0" layoutY="110.0" mnemonicParsing="false" text="Python">
+      <CheckBox fx:id="cb_python" layoutX="13.0" layoutY="110.0" mnemonicParsing="false" onMouseClicked="#actionPython" text="Python">
          <font>
             <Font size="14.0" />
          </font>
       </CheckBox>
-      <CheckBox fx:id="cb_java" layoutX="13.0" layoutY="140.0" mnemonicParsing="false" text="Java">
+      <CheckBox fx:id="cb_java" layoutX="13.0" layoutY="140.0" mnemonicParsing="false" onMouseClicked="#actionJava" text="Java">
          <font>
             <Font size="14.0" />
          </font>
       </CheckBox>
-      <CheckBox fx:id="cb_all" layoutX="13.0" layoutY="170.0" mnemonicParsing="false" onMouseClicked="#selectAll" text="zaznacz wszystkie">
+      <CheckBox fx:id="cb_all" layoutX="13.0" layoutY="232.0" mnemonicParsing="false" onMouseClicked="#selectAll" text="zaznacz wszystkie">
          <font>
             <Font size="14.0" />
          </font>
@@ -49,11 +50,24 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <PieChart fx:id="pieChart" layoutX="174.0" layoutY="49.0" prefHeight="282.0" prefWidth="411.0" />
-      <Button fx:id="btn_start1" layoutX="191.0" layoutY="337.0" mnemonicParsing="false" onMouseClicked="#actionStart" prefHeight="45.0" prefWidth="144.0" text="MOJE WYNIKI">
+      <PieChart fx:id="pieChart" layoutX="238.0" layoutY="49.0" prefHeight="222.0" prefWidth="347.0" />
+      <Button fx:id="btn_wyniki" layoutX="191.0" layoutY="337.0" mnemonicParsing="false" onMouseClicked="#actionWyniiki" prefHeight="45.0" prefWidth="144.0" text="MOJE WYNIKI">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
+      <CheckBox fx:id="cb_frontend" layoutX="13.0" layoutY="170.0" mnemonicParsing="false" onMouseClicked="#actionFrontend" text="Frontend">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="cb_spring" layoutX="13.0" layoutY="200.0" mnemonicParsing="false" onMouseClicked="#actionSpring" text="Spring">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </CheckBox>
+      <Label layoutX="24.0" layoutY="286.0" text="Ile chcesz pytań w teście:" />
+      <Slider fx:id="sIle" layoutX="183.0" layoutY="288.0" onContextMenuRequested="#actionChange" onDragDetected="#actionChange" onDragDone="#actionChange" onDragDropped="#actionChange" onDragEntered="#actionChange" onDragExited="#actionChange" onDragOver="#actionChange" onInputMethodTextChanged="#actionChange" onKeyPressed="#actionChange" onKeyReleased="#actionChange" onKeyTyped="#actionChange" onMouseClicked="#actionChange" onMouseDragEntered="#actionChange" onMouseDragExited="#actionChange" onMouseDragOver="#actionChange" onMouseDragReleased="#actionChange" onMouseDragged="#actionChange" onMouseEntered="#actionChange" onMouseExited="#actionChange" onMouseMoved="#actionChange" onMousePressed="#actionChange" onMouseReleased="#actionChange" onRotate="#actionChange" onRotationFinished="#actionChange" onRotationStarted="#actionChange" onScroll="#actionChange" onScrollFinished="#actionChange" onScrollStarted="#actionChange" onSwipeDown="#actionChange" onSwipeLeft="#actionChange" onSwipeRight="#actionChange" onSwipeUp="#actionChange" onTouchMoved="#actionChange" onTouchPressed="#actionChange" onTouchReleased="#actionChange" onTouchStationary="#actionChange" prefHeight="14.0" prefWidth="236.0" />
+      <Label fx:id="lblIle" layoutX="440.0" layoutY="286.0" text="Label" />
    </children>
 </AnchorPane>
