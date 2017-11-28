@@ -67,6 +67,9 @@ public class PytaniaController {
 
     @FXML
     private Button btnZamknij;
+    
+    @FXML
+    private Button btn_log;
 
 
     @FXML
@@ -175,7 +178,13 @@ public class PytaniaController {
 		cb_zakres.setValue(null);		
 	}
     
-
+	public void refresh() { //czy się przyda?
+		tvPytania.refresh();
+	System.out.println("refresh");
+	}
+	
+	
+	
     public void initialize() throws SQLException {
     	db = new DBConnector();
     	this.select();
@@ -272,11 +281,12 @@ System.out.println("robię select");
 	                try {
 						((Pytania) t.getTableView().getItems().get(
 						        t.getTablePosition().getRow())
-						        ).setZakres(t.getNewValue());
+						        ).setZakres(t.getNewValue()); 
 					} catch (SQLException e) {
 						e.printStackTrace();
 					}
-	        });
+	            
+	            });
     	
     	colnrodp.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
     	colnrodp.setOnEditCommit(
@@ -319,6 +329,18 @@ System.out.println("robię select");
     	} 
     
 
+    }
+    
+    
+    @FXML
+    void actionLog(MouseEvent event) throws IOException {
+    	Stage stage = new Stage();
+    	Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/app/View/LoginView.fxml"));
+    	Scene scene = new Scene(parent);
+    	stage.setScene(scene);
+    	stage.setTitle("Logowanie");
+    	stage.show();
+    	((Node)(event.getSource())).getScene().getWindow().hide();
     }
     
     

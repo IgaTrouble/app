@@ -16,7 +16,7 @@ public class Main extends Application {
 		Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/app/View/LoginView.fxml"));
 		Scene scene = new Scene(parent);
 		primaryStage.setScene(scene);
-		primaryStage.setTitle("Trzecia aplikacja");
+		primaryStage.setTitle("Reaktor PWN");
 		primaryStage.show();
 	}
 	

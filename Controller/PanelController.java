@@ -36,9 +36,10 @@ public class PanelController {
 
     @FXML
     private MenuItem m_help;
-
- 
-
+    
+    
+    @FXML
+    private Button btn_log;
 
 
     @FXML
@@ -88,7 +89,6 @@ public class PanelController {
 		stage.setTitle("Kursanci");
 		stage.show();
 		((Node)(event.getSource())).getScene().getWindow().hide();
-
     }
 
     @FXML
@@ -100,8 +100,19 @@ public class PanelController {
 		stage.setTitle("Pytania");
 		stage.show();
 		((Node)(event.getSource())).getScene().getWindow().hide();
-    	
-
     }
+    
+    @FXML
+    void actionLog(MouseEvent event) throws IOException {
+    	Stage stage = new Stage();
+    	Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/app/View/LoginView.fxml"));
+    	Scene scene = new Scene(parent);
+    	stage.setScene(scene);
+    	stage.setTitle("Logowanie");
+    	stage.show();
+    	((Node)(event.getSource())).getScene().getWindow().hide();
+    }
+    
+    
 
 }

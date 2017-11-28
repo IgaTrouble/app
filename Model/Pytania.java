@@ -3,6 +3,7 @@ package app.Model;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import app.Controller.PytaniaController;
 import app.Database.DBConnector;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -18,7 +19,7 @@ public class Pytania {
 	private Integer odppopr;
 	static String sqlUpd;
 	DBConnector db;
-
+	PytaniaController pc = new PytaniaController();
 	
 	
 	@Override
@@ -58,13 +59,12 @@ public class Pytania {
 		sqlUpd="update pytania set zakres='"+this.zakres+"' where idp='"+this.idp+"';";
 		System.out.println(sqlUpd);
 		this.update();
-		} else { //to powinno być w pytania controlerze przy edit
+		} else {
 			Alert e = new Alert(AlertType.ERROR);
         	e.setContentText("Błąd");
         	e.setHeaderText("Błąd, podano błędny zakres pytań");
         	e.setTitle("Błąd");
-        	e.showAndWait(); 
-			
+        	e.showAndWait();
 		}
 		
 		
@@ -129,7 +129,7 @@ public class Pytania {
         	e.setContentText("Błąd"); //to powinno być w pytania controlerze przy edit
         	e.setHeaderText("Błąd, poprawna odpowiedz może zawierać się w przedziale 1-4");
         	e.setTitle("Błąd");
-        	e.showAndWait(); 
+        	e.showAndWait();
 		}
 		
 	}

@@ -17,7 +17,7 @@
       <Label alignment="CENTER" layoutX="72.0" layoutY="178.0" prefHeight="31.0" prefWidth="140.0" text="Login" textAlignment="CENTER" />
       <Label alignment="CENTER" layoutX="68.0" layoutY="230.0" prefHeight="31.0" prefWidth="149.0" text="Password" textAlignment="CENTER" />
       <Button fx:id="btn_show" layoutX="403.0" layoutY="233.0" mnemonicParsing="false" onMouseClicked="#showPass" prefHeight="25.0" prefWidth="76.0" text="Show" />
-      <ImageView blendMode="SCREEN" fitHeight="142.0" fitWidth="600.0" layoutX="-2.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="142.0" fitWidth="600.0" layoutX="-2.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../logo_reaktor2.jpg" />
          </image>

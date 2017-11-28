@@ -46,5 +46,6 @@
       <RadioButton fx:id="rbOdp4" layoutX="562.0" layoutY="476.0" mnemonicParsing="false" toggleGroup="$G1" />
       <ComboBox fx:id="cb_zakres" layoutX="192.0" layoutY="334.0" prefWidth="150.0" promptText="--zakres--" />
       <Button fx:id="btn_delete" layoutX="874.0" layoutY="357.0" mnemonicParsing="false" onMouseClicked="#deleteAction" prefHeight="64.0" prefWidth="117.0" text="Usuń" />
+      <Button fx:id="btn_log" layoutX="726.0" layoutY="427.0" mnemonicParsing="false" onMouseClicked="#actionLog" prefHeight="64.0" prefWidth="140.0" text="Powrót do logowania" />
    </children>
 </AnchorPane>

@@ -127,9 +127,9 @@ public class TestController {
     	System.out.println("Przerwij");
     	Alert a = new Alert(AlertType.CONFIRMATION);
     	a.setHeaderText("Przerwanie testu");
-    	a.setContentText("Czy przerwaæ test ?\n Twoje dotychczasowe odpowiedzi zosta³y zapisane, ale nie wlicz¹ siê do œredniej.");
+    	a.setContentText("Czy przerwaï¿½ test ?\n Twoje dotychczasowe odpowiedzi zostaï¿½y zapisane, ale nie wliczï¿½ siï¿½ do ï¿½redniej.");
     	a.setTitle("Potwierdzenie przerwania testu");
-    	ButtonType btTAK = new ButtonType("TAK, przerwij½");
+    	ButtonType btTAK = new ButtonType("TAK, przerwijï¿½");
     	ButtonType btNIE = new ButtonType("NIE");
     	a.getButtonTypes().setAll(btTAK, btNIE);
     	Optional<ButtonType> result = a.showAndWait();
@@ -245,9 +245,9 @@ public class TestController {
     private void nextQuestion() throws IOException{
     	if ((pytania==null)||(pytania.size()<App.liczba_pytan)){
 			Alert e = new Alert(AlertType.ERROR);
-        	e.setContentText("Niewystarczaj¹ca liczba pytañ do przeprowadzenia testu !");
-        	e.setHeaderText("B³¹d");
-        	e.setTitle("B³¹d");
+        	e.setContentText("Niewystarczajï¿½ca liczba pytaï¿½ do przeprowadzenia testu !");
+        	e.setHeaderText("Bï¿½ï¿½d");
+        	e.setTitle("Bï¿½ï¿½d");
         	e.showAndWait();
         	zamknij();
         	return;
@@ -290,9 +290,9 @@ public class TestController {
     	} else
     	{
     		Alert e = new Alert(AlertType.ERROR);
-        	e.setContentText("Nie ma ju¿ pytañ do zadania, koniec testu");
-        	e.setHeaderText("B³¹d");
-        	e.setTitle("B³¹d");
+        	e.setContentText("Nie ma juï¿½ pytaï¿½ do zadania, koniec testu");
+        	e.setHeaderText("Bï¿½ï¿½d");
+        	e.setTitle("Bï¿½ï¿½d");
         	e.showAndWait();
         	btnKoniec.setVisible(false);
         	btnNext.setVisible(false);
@@ -309,7 +309,7 @@ public class TestController {
     	try {
 			ResultSet rs = db.Connection().createStatement().executeQuery(sql);
 			if (rs.next()){
-				// coœ siê policzy³o
+				// coï¿½ siï¿½ policzyï¿½o
 				ile=rs.getInt(1);
 			}else{
 				// nic nie ma
@@ -317,7 +317,7 @@ public class TestController {
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			System.out.println("Wystapi³ b³¹d "+e.getMessage());
+			System.out.println("Wystapiï¿½ bï¿½ï¿½d "+e.getMessage());
 			e.printStackTrace();
 		}
     	
@@ -332,7 +332,7 @@ public class TestController {
     	try {
 			ResultSet rs = db.Connection().createStatement().executeQuery(sql);
 			if (rs.next()){
-				// coœ siê policzy³o
+				// coï¿½ siï¿½ policzyï¿½o
 				ile=rs.getInt(1);
 			}else{
 				// nic nie ma
@@ -340,7 +340,7 @@ public class TestController {
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			System.out.println("Wystapi³ b³¹d "+e.getMessage());
+			System.out.println("Wystapiï¿½ bï¿½ï¿½d "+e.getMessage());
 			e.printStackTrace();
 		}
     	
@@ -405,7 +405,7 @@ public class TestController {
     	lblSrednia.setText(String.format("%d", srednia()));
     	numertestu=Testy.createTest(App.email);
     	if (numertestu<0){
-    		System.out.println("Wyst¹pi³ nieprzewidziany b³¹d, nie da siê dodaæ testu do bazy danych !");
+    		System.out.println("Wystï¿½piï¿½ nieprzewidziany bï¿½ï¿½d, nie da siï¿½ dodaï¿½ testu do bazy danych !");
     		System.exit(100);
     	}
     	;
@@ -414,7 +414,7 @@ public class TestController {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("Nieprzewidziany b³¹d, nie uda³o siê wczytaæ listy pytañ !");
+			System.out.println("Nieprzewidziany bï¿½ï¿½d, nie udaï¿½o siï¿½ wczytaï¿½ listy pytaï¿½ !");
 			System.exit(100);
 		}
     	    	
