@@ -120,6 +120,9 @@ public class TestController {
     @FXML
     private ImageView im4nieok;
     
+    @FXML
+    private ImageView imLogo;
+    
   
 
     @FXML

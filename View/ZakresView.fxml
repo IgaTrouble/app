@@ -7,49 +7,53 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Controller.ZakresController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Controller.ZakresController">
    <children>
       <Label layoutX="15.0" layoutY="14.0" text="Zaczynamy test, wybierz zakres tematyczny pytań, z którego chcesz odpowiadać.">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <CheckBox fx:id="cb_sql" layoutX="13.0" layoutY="52.0" mnemonicParsing="false" text="SQL">
+      <CheckBox fx:id="cb_sql" layoutX="13.0" layoutY="50.0" mnemonicParsing="false" text="SQL">
          <font>
             <Font size="14.0" />
          </font>
       </CheckBox>
-      <CheckBox fx:id="cb_git" layoutX="13.0" layoutY="86.0" mnemonicParsing="false" text="GIT">
+      <CheckBox fx:id="cb_git" layoutX="13.0" layoutY="80.0" mnemonicParsing="false" text="GIT">
          <font>
             <Font size="14.0" />
          </font>
       </CheckBox>
-      <CheckBox fx:id="cb_python" layoutX="14.0" layoutY="120.0" mnemonicParsing="false" text="Python">
+      <CheckBox fx:id="cb_python" layoutX="13.0" layoutY="110.0" mnemonicParsing="false" text="Python">
          <font>
             <Font size="14.0" />
          </font>
       </CheckBox>
-      <CheckBox fx:id="cb_java" layoutX="13.0" layoutY="154.0" mnemonicParsing="false" text="Java">
+      <CheckBox fx:id="cb_java" layoutX="13.0" layoutY="140.0" mnemonicParsing="false" text="Java">
          <font>
             <Font size="14.0" />
          </font>
       </CheckBox>
-      <CheckBox fx:id="cb_all" layoutX="16.0" layoutY="190.0" mnemonicParsing="false" onMouseClicked="#selectAll" text="zaznacz wszystkie">
+      <CheckBox fx:id="cb_all" layoutX="13.0" layoutY="170.0" mnemonicParsing="false" onMouseClicked="#selectAll" text="zaznacz wszystkie">
          <font>
             <Font size="14.0" />
          </font>
       </CheckBox>
-      <Button fx:id="btn_log" layoutX="449.0" layoutY="348.0" mnemonicParsing="false" onMouseClicked="#actionLog" prefHeight="45.0" prefWidth="144.0" text="Powrót do logowania">
+      <Button fx:id="btn_log" layoutX="350.0" layoutY="337.0" mnemonicParsing="false" onMouseClicked="#actionLog" prefHeight="45.0" prefWidth="144.0" text="Powrót do logowania">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="btn_start" layoutX="18.0" layoutY="303.0" mnemonicParsing="false" onMouseClicked="#actionStart" prefHeight="68.0" prefWidth="93.0" text="START">
+      <Button fx:id="btn_start" layoutX="24.0" layoutY="337.0" mnemonicParsing="false" onMouseClicked="#actionStart" prefHeight="45.0" prefWidth="144.0" text="START">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <PieChart fx:id="pieChart" layoutX="161.0" layoutY="49.0" prefHeight="282.0" prefWidth="411.0" title="Zakresy pytań" />
+      <PieChart fx:id="pieChart" layoutX="174.0" layoutY="49.0" prefHeight="282.0" prefWidth="411.0" />
+      <Button fx:id="btn_start1" layoutX="191.0" layoutY="337.0" mnemonicParsing="false" onMouseClicked="#actionStart" prefHeight="45.0" prefWidth="144.0" text="MOJE WYNIKI">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
