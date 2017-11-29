@@ -34,6 +34,7 @@ create table testy(
     data_testu date,
     foreign key (kursant) references loginy(email)
 );
+alter table testy add wynik integer;
 
 create table odpowiedzi(
 	ido integer primary key auto_increment,
