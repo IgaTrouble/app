@@ -22,7 +22,7 @@ public class Pytania {
 	private Integer odppopr;
 	static String sqlUpd;
 	DBConnector db;
-	PytaniaController pc = new PytaniaController();
+	//PytaniaController pc = new PytaniaController();
 	
 	
 	@Override
@@ -56,11 +56,12 @@ public class Pytania {
 		return zakres;
 	}
 	public void setZakres(String zakres) throws SQLException {
-		this.zakres = zakres;
+		
 		if (zakres.equals("SQL") || zakres.equals("Git") || zakres.equals("Front-End")
 				|| zakres.equals("Python") || zakres.equals("Java") || zakres.equals("Spring"))  {
-		sqlUpd="update pytania set zakres='"+this.zakres+"' where idp='"+this.idp+"';";
-		System.out.println(sqlUpd);
+		//sqlUpd="update pytania set zakres='"+this.zakres+"' where idp='"+this.idp+"';";
+		//System.out.println(sqlUpd);
+		this.zakres = zakres;
 		this.update();
 		} else {
 			Alert e = new Alert(AlertType.ERROR);
@@ -68,7 +69,7 @@ public class Pytania {
         	e.setHeaderText("Błąd, podano błędny zakres pytań");
         	e.setTitle("Błąd");
         	e.showAndWait();
-        	pc.refresh();
+        	//pc.refresh();
 		}
 		
 		

@@ -302,7 +302,8 @@ System.out.println("robię select");
 	                try {
 						((Pytania) t.getTableView().getItems().get(
 						        t.getTablePosition().getRow())
-						        ).setZakres(t.getNewValue()); 
+						        ).setZakres(t.getNewValue());
+						this.refresh();
 					} catch (SQLException e) {
 						e.printStackTrace();
 					}
@@ -316,6 +317,7 @@ System.out.println("robię select");
 						((Pytania) t.getTableView().getItems().get(
 						        t.getTablePosition().getRow())
 						        ).setOdppopr(t.getNewValue());
+						
 					} catch (SQLException e) {
 						e.printStackTrace();
 					}
