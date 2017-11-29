@@ -68,6 +68,8 @@ public class PanelController {
 
     }
 
+    @FXML
+    private Button btn_statystyki;
 
 	
 
@@ -113,6 +115,17 @@ public class PanelController {
     	((Node)(event.getSource())).getScene().getWindow().hide();
     }
     
-    
+    @FXML
+    void actionStatystyki(MouseEvent event) throws IOException {
+    	Stage stage = new Stage();
+    	Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/app/View/StatystykiView.fxml"));
+    	Scene scene = new Scene(parent);
+    	stage.setScene(scene);
+    	stage.setTitle("Statystyki");
+    	stage.show();
+    	((Node)(event.getSource())).getScene().getWindow().hide();
+    }
+   
+ 
 
 }

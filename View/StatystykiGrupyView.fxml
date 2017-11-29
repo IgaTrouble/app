@@ -12,11 +12,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="486.0" prefWidth="717.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Controller.MojeWynikiController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="486.0" prefWidth="717.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Controller.StatystykiGrupyController">
    <children>
       <Button fx:id="btnZamknij" layoutX="643.0" layoutY="447.0" mnemonicParsing="false" onMouseClicked="#ActionZamknij" text="Zamknij" />
-      <Label layoutX="53.0" layoutY="36.0" text="Moje wyniki - statystyki">
+      <Label layoutX="53.0" layoutY="36.0" text="Statystyki grupy :">
          <font>
             <Font size="23.0" />
          </font>

@@ -63,15 +63,23 @@ update zakresy set opis_zakresu='Pytania ze SPRINGa' where zakres='SPRING';
 
 select * from zakresy;
 delete from  pytania;
+select * from loginy;
+
+select k.email, k.grupa, count(t.idt) as rozpoczete, sum(case when t.wynik is not null then 1 else 0 end) as zakonczone, 
+coalesce(avg(t.wynik),0) as wynik from loginy k left join testy t on t.kursant=k.email where k.email='"+App.email+"' group by k.email, k.grupa;
+
+select count(*), grupa from loginy where typ = "KURSANT" group by grupa;
+select count(*), imie, nazwisko from loginy where typ = "KURSANT" group by grupa;
 
 select * from pytania;
 
 insert into loginy(email,imie,nazwisko,grupa,pass,typ) values ('admin','Admin','Admin','ADMIN','admin','EGZAMINATOR');
+insert into loginy(email,imie,nazwisko,grupa,pass,typ) values ('aAdaś','Miauczński','Miał','ad2','elo','KURSANT');
 insert into pytania(zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) values ('SQL','Jakim poleceniem utworzysz nową bazę danych?','create table','use database','altertable','create database', 4);
 insert into pytania(zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) values ('SQL','Do czego służy klauzula WHERE?','Do definiowania warunków zapytania','Do określania gdzie mają zostać wyświetlone wyniki','Do określenia adresu (URL) bazy danych','Do ograniczenia liczby wyników', 1);
-insert into pytania(zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) values ('SQL','Pytanie 2','2create table','use database','altertable','create database', 2);
-insert into pytania(zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) values ('SQL','Pytanie 3','3Create table','use database','altertable','create database', 4);
-insert into pytania(zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) values ('SQL','Pytanie4 ?','4create table','use database','altertable','create database', 4);
+insert into pytania(zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) values ('SQL','Jak uszeregować wyniki w kolumnie wg kolejności alfabetycznej?','asc','alfa','desc','mesc', 3);
+insert into pytania(zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) values ('SQL','limit','3Create table','use database','altertable','create database', 4);
+insert into pytania(zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) values ('SQL','Jak zliczyć rekordy w tabeli "Tab" ?','count tab','select * from tab;','select rekord from tab;','select count(*) from tab;', 4);
 insert into pytania(zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) values ('SQL','Pytanie5?','create table','use database','altertable','create database', 4);
 insert into pytania(zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) values ('SQL','Pytanie6?','create table','use database','altertable','create database', 4);
 insert into pytania(zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) values ('SQL','Pytanie7?','create table','use database','altertable','create database', 4);

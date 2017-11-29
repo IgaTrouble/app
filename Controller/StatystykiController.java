@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import app.Database.DBConnector;
-import app.Model.App;
+import app.Model.Loginy;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,129 +14,91 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.PieChart;
-import javafx.scene.chart.PieChart.Data;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class StatystykiController {
+	public DBConnector db;
+	private ObservableList grupy;
+	private ObservableList osoby;
+    @FXML
+    private Button btn_show;
 
     @FXML
-    private Button btnZamknij;
+    protected ComboBox<Loginy> cb_grupa;
 
     @FXML
-    private Label lblKursant;
+	protected ComboBox<Loginy> cb_osoba;
 
     @FXML
-    private Label lblGrupa;
-
-    @FXML
-    private Label lblTestyAll;
-
-    @FXML
-    private Label lblTestyZakonczone;
-
-    @FXML
-    private Label lblOdpowiedziAll;
-
-    @FXML
-    private Label lblOdpowiedziPopr;
-
-    @FXML
-    private Label lblOdpowiedziNiep;
-
-    @FXML
-    private Label lblOdpowiedziNiep1;
-
-    @FXML
-    private PieChart pic;
-
-    @FXML
-    private Label lblOdpowiedziWynik;
-    
-    @FXML
-    private ProgressBar pbWynik;
-    
-    @FXML
-    void ActionZamknij(MouseEvent event) throws IOException {
-    	System.out.println("Moje wyniki");
-    	Stage stage = new Stage();
-    	Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/app/View/ZakresView.fxml"));
-    	Scene scene = new Scene(parent);
-    	stage.setScene(scene);
-    	stage.setTitle("Test");
-    	stage.show();
-    	((Node)(event.getSource())).getScene().getWindow().hide();
-
+    void actionShowStat(MouseEvent event) throws IOException {
+    	if (!(cb_osoba.getValue() == null)) {
+    		System.out.println(cb_osoba.getValue());
+    	 	Stage stage = new Stage();
+        	Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/app/View/StatystykiKursantaView.fxml"));
+        	Scene scene = new Scene(parent);
+        	stage.setScene(scene);
+        	stage.setTitle("Statystyki");
+        	stage.show();
+        	((Node)(event.getSource())).getScene().getWindow().hide();}
+    	else if (!(cb_grupa.getValue() == null)) {
+    		Stage stage = new Stage();
+        	Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/app/View/StatystykiGrupyView.fxml"));
+        	Scene scene = new Scene(parent);
+        	stage.setScene(scene);
+        	stage.setTitle("Statystyki");
+        	stage.show();
+        	((Node)(event.getSource())).getScene().getWindow().hide();}
+    	else {
+    		Alert e = new Alert(AlertType.ERROR);
+        	e.setContentText("Bląd");
+        	e.setHeaderText("Błąd, nie wybrano grupy ani osoby");
+        	e.setTitle("Błąd");
+        	e.showAndWait(); 
+    	}		
     }
     
     public void initialize() throws SQLException {
-    	
-    	String sql="select  count(*), 'Poprawne'"
-    			+ "from odpowiedzi o "
-    			+ "inner join pytania p on p.idp=o.pytanie "
-    			+ "inner join testy t on t.idt=o.test "
-    			+ "where t.kursant='"+App.email+"' and o.odpowiedz=p.odppopr "
-    			+ "union "
-    			+ "select  count(*), 'Nieoprawne' "
-    			+ "from odpowiedzi o "
-    			+ "inner join pytania p on p.idp=o.pytanie "
-    			+ "inner join testy t on t.idt=o.test "
-    			+ "where t.kursant='"+App.email+"' and o.odpowiedz<>p.odppopr ";
-    	pic.setVisible(false);
-    	ObservableList<Data> data = FXCollections.observableArrayList();
-    	DBConnector db = new DBConnector();
-        Connection conn = db.Connection();
-        
-        double niep=0;
-        double pop=0;
-        
-        ResultSet rs = conn.createStatement().executeQuery(sql);
-        System.out.println(sql);
-        while(rs.next()){
-        		
-        		Double liczba=rs.getDouble(1);
-        		String opis=rs.getString(2)+" ("+liczba+")";
-        		if (rs.getString(2).toUpperCase().equals("POPRAWNE")) 
-        			pop=liczba;
-        		else
-        			niep=liczba;
-        				
-                data.add(new PieChart.Data(opis,liczba));                            
-        }       
-        
-        pic.getData().addAll(data);
-	 	pic.setVisible(true);
-	 	
-	 	lblKursant.setText(App.imie+" "+App.nazwisko);
-	 	lblOdpowiedziAll.setText(""+(int)(pop+niep));
-	 	lblOdpowiedziPopr.setText(""+(int)(pop));
-	 	lblOdpowiedziNiep.setText(""+(int)(niep));
-	 	
-	 	
-	 	sql="select k.email, k.grupa, "
-	 			+ "count(t.idt) as rozpoczete, "
-	 			+ "sum(case when t.wynik is not null then 1 else 0 end) as zakonczone, "
-	 			+ "coalesce(avg(t.wynik),0) as wynik "
-	 			+ "from loginy k "
-	 			+ "left join testy t on t.kursant=k.email "
-	 			+ "where k.email='"+App.email+"' group by k.email, k.grupa; ";
-	 	
-	 	rs = conn.createStatement().executeQuery(sql);
-        System.out.println(sql);
-        while(rs.next()){
-        	lblGrupa.setText(rs.getString(2));
-        	lblTestyAll.setText(""+(rs.getInt(3)));
-        	lblTestyZakonczone.setText(""+rs.getInt(4));
-        	lblOdpowiedziWynik.setText(""+rs.getDouble(5)+" %");
-        	pbWynik.setProgress(rs.getDouble(5)/100.0);
-        }   
-	 	
-	 	
-	 	conn.close();
+    	db = new DBConnector();
+    	this.pobierz_grupy();
+    	cb_grupa.setItems(grupy);
+    	this.pobierz_osoby();
+    	cb_osoba.setItems(osoby);
     }
-
+    
+    
+	public  void pobierz_grupy()  {
+		try {
+			grupy = FXCollections.observableArrayList();
+			Connection conn = db.Connection();
+			ResultSet rs = conn.createStatement().executeQuery("select count(*), grupa from loginy where typ = \"KURSANT\" group by grupa;");
+			while(rs.next()){
+				grupy.addAll(rs.getString(2));
+			}
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+    
+		public  void pobierz_osoby()  {
+			try {
+				osoby = FXCollections.observableArrayList();
+				Connection conn = db.Connection();
+				ResultSet rs = conn.createStatement().executeQuery("select count(*), imie, nazwisko from loginy where typ = \"KURSANT\" group by grupa;");
+				while(rs.next()){
+					osoby.addAll(rs.getString(2) + " " + rs.getString(3));
+				}
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+	    
+    
+    
+	}
 }

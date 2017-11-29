@@ -88,7 +88,7 @@ public class LoginController {
     			Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/app/View/ZakresView.fxml"));
 	        	Scene scene = new Scene(parent);
 	        	stage.setScene(scene);
-	        	stage.setTitle("Kursanci");
+	        	stage.setTitle("Wybór zakresu");
 	        	stage.show();
 	        
     		}
