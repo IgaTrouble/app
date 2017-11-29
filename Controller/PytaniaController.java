@@ -37,7 +37,6 @@ public class PytaniaController {
 	public DBConnector db;
 	public ObservableList<Pytania> data;
     ObservableList<String> zakres = FXCollections.observableArrayList("SQL", "Git", "Front-End", "Python", "Java", "Spring");
-//zakres jako select z bazy danych
     @FXML
     private TableView<Pytania> tvPytania;
 
@@ -183,14 +182,14 @@ public class PytaniaController {
 	System.out.println("refresh");
 	}
 	
-	public  void pobierz_zakres(ObservableList<String> s)  {
+	public  void pobierz_zakres(ObservableList<String> zakres)  {
 		ResultSet rs;
 		//DBConnector db=new DBConnector();
 		try {
 			Connection conn = db.Connection();
 			rs = conn.createStatement().executeQuery("select zakres from zakresy;");
 			while(rs.next()){
-				s.add(rs.getString(1));
+				zakres.add(rs.getString(1));
 			}
 			conn.close();
 		} catch (SQLException e) {
