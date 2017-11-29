@@ -21,8 +21,10 @@
          </font>
       </Label>
       <Separator layoutX="38.0" layoutY="72.0" prefHeight="0.0" prefWidth="364.0" />
-      <Label layoutX="39.0" layoutY="94.0" text="Imię i nazwisko :" />
-      <Label layoutX="39.0" layoutY="121.0" text="Grupa:" />
+      <Label layoutX="53.0" layoutY="95.0" text="Grupa:">
+         <font>
+            <Font size="17.0" />
+         </font></Label>
       <Label layoutX="39.0" layoutY="174.0" text="Liczba testów rozpoczętych:" />
       <Label layoutX="39.0" layoutY="203.0" prefHeight="17.0" prefWidth="175.0" text="Liczba testów zakończonych:" />
       <Label layoutX="39.0" layoutY="233.0" prefHeight="17.0" prefWidth="175.0" text="Łączna liczba odpowiedzi:" />
@@ -30,14 +32,9 @@
       <Label layoutX="39.0" layoutY="289.0" prefHeight="17.0" prefWidth="195.0" text="Liczba odpowiedzi niepoprawnych:" />
       <Separator layoutX="38.0" layoutY="152.0" prefHeight="0.0" prefWidth="364.0" />
       <Label layoutX="39.0" layoutY="362.0" prefHeight="17.0" prefWidth="231.0" text="Uśredniony wynik zakończonych testów:" />
-      <Label fx:id="lblKursant" layoutX="158.0" layoutY="94.0" prefHeight="17.0" prefWidth="244.0" text="Label">
+      <Label fx:id="lblGrupa" layoutX="148.0" layoutY="98.0" prefHeight="17.0" prefWidth="244.0" text="Label">
          <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <Label fx:id="lblGrupa" layoutX="158.0" layoutY="121.0" prefHeight="17.0" prefWidth="244.0" text="Label">
-         <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
       </Label>
       <Label fx:id="lblTestyAll" layoutX="237.0" layoutY="174.0" prefHeight="17.0" prefWidth="164.0" text="Label">

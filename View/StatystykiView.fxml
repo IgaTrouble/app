@@ -7,7 +7,6 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Controller.StatystykiController">
    <children>
       <Button fx:id="btn_show" layoutX="339.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#actionShowStat" prefHeight="39.0" prefWidth="150.0" text="pokaż" />
@@ -21,5 +20,6 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </StackedBarChart>
+      <Button fx:id="btn_zamknij" layoutX="534.0" layoutY="361.0" mnemonicParsing="false" onMouseClicked="#actionZamknij" text="Zamknij" />
    </children>
 </AnchorPane>

@@ -19,5 +19,6 @@ public class App {
 	public static int ilejava;
 	public static int ilefrontend;
 	public static int ilespring;
+	public static String grupa;
 	
 }

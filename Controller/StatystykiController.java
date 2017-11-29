@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import app.Database.DBConnector;
+import app.Model.App;
 import app.Model.Loginy;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,7 +30,7 @@ public class StatystykiController {
     private Button btn_show;
 
     @FXML
-    protected ComboBox<Loginy> cb_grupa;
+    protected ComboBox<String> cb_grupa;
 
     @FXML
 	protected ComboBox<Loginy> cb_osoba;
@@ -46,6 +47,7 @@ public class StatystykiController {
         	stage.show();
         	((Node)(event.getSource())).getScene().getWindow().hide();}
     	else if (!(cb_grupa.getValue() == null)) {
+    		App.grupa=cb_grupa.getValue();
     		Stage stage = new Stage();
         	Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/app/View/StatystykiGrupyView.fxml"));
         	Scene scene = new Scene(parent);
@@ -97,8 +99,23 @@ public class StatystykiController {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-	    
+			
+			    
     
     
 	}
+		
+	   @FXML
+	    private Button btn_zamknij;
+	   
+		@FXML
+	    void actionZamknij(MouseEvent event) throws IOException {
+			Stage stage = new Stage();
+	    	Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/app/View/PanelView.fxml"));
+	    	Scene scene = new Scene(parent);
+	    	stage.setScene(scene);
+	    	stage.setTitle("Logowanie");
+	    	stage.show();
+	    	((Node)(event.getSource())).getScene().getWindow().hide();
+	    }
 }
