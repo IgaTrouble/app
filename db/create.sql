@@ -55,6 +55,10 @@ insert into zakresy(zakres, opis_zakresu) values ('Python', 'pytania z bazy dany
 insert into zakresy(zakres, opis_zakresu) values ('Java', 'pytania z bazy danych');
 insert into zakresy(zakres,opis_zakresu) values('FE','Front-End');
 insert into zakresy(zakres,opis_zakresu) values('SP','Spring');
+update zakresy set opis_zakresu='Pytania z GITa' where zakres='GiT';
+update zakresy set opis_zakresu='Pytania z JAVy' where zakres='Java';
+update zakresy set opis_zakresu='Pytania z Pythona' where zakres='Python';
+update zakresy set opis_zakresu='Pytania ze SPRINGa' where zakres='SPRING';
 
 select * from zakresy;
 delete from  pytania;
@@ -77,3 +81,12 @@ insert into pytania(zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) values ('SQL','
 insert into pytania(zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) values ('SQL','Pytanie12?','create table','use database','altertable','create database', 4);
 insert into pytania(zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) values ('SQL','Pytanie13?','create table','use database','altertable','create database', 4);
 insert into pytania(zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) values ('SQL','Pytanie14?','create table','use database','altertable','create database', 4);
+
+insert into pytania(zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) values ('Java','Pytanie20?','create table','use database','altertable','create database', 4);
+insert into pytania(zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) values ('Java','Pytanie21?','create table','use database','altertable','create database', 4);
+insert into pytania(zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) values ('GiT','Pytanie22?','create table','use database','altertable','create database', 4);
+insert into pytania(zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) values ('GiT','Pytanie23?','create table','use database','altertable','create database', 4);
+insert into pytania(zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) values ('Java','Pytanie14?','create table','use database','altertable','create database', 4);
+
+insert into pytania(zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) values ('FE','Pytanie80?','create table','use database','altertable','create database', 4);
+insert into pytania(zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) values ('SPRING','Pytanie81?','create table','use database','altertable','create database', 4);

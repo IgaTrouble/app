@@ -120,9 +120,9 @@ public class StatystykiController {
 	 	sql="select k.email, k.grupa, "
 	 			+ "count(t.idt) as rozpoczete, "
 	 			+ "sum(case when t.wynik is not null then 1 else 0 end) as zakonczone, "
-	 			+ "avg(t.wynik) as wynik "
+	 			+ "coalesce(avg(t.wynik),0) as wynik "
 	 			+ "from loginy k "
-	 			+ "inner join testy t on t.kursant=k.email "
+	 			+ "left join testy t on t.kursant=k.email "
 	 			+ "where k.email='"+App.email+"' group by k.email, k.grupa; ";
 	 	
 	 	rs = conn.createStatement().executeQuery(sql);

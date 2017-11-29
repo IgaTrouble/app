@@ -376,6 +376,7 @@ public class TestController {
 				pytania.add(p);
 				System.out.println(p);
 				zakresy.put(p,rs.getString(9));
+				System.out.println("zakres:"+rs.getString(9));
 							
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
