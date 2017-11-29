@@ -129,7 +129,7 @@ import javafx.scene.input.MouseEvent;
 	    	Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/app/View/MojeWynikiView.fxml"));
 	    	Scene scene = new Scene(parent);
 	    	stage.setScene(scene);
-	    	stage.setTitle("Test");
+	    	stage.setTitle("Moje wyniki");
 	    	stage.show();
 	    	((Node)(event.getSource())).getScene().getWindow().hide();
 	    }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
@@ -8,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Controller.ZakresController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="422.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Controller.ZakresController">
    <children>
       <Label layoutX="15.0" layoutY="14.0" text="Zaczynamy test, wybierz zakres tematyczny pytań, z którego chcesz odpowiadać.">
          <font>
@@ -50,7 +51,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <PieChart fx:id="pieChart" layoutX="238.0" layoutY="49.0" prefHeight="222.0" prefWidth="347.0" />
+      <PieChart fx:id="pieChart" layoutX="232.0" layoutY="49.0" legendVisible="false" prefHeight="222.0" prefWidth="347.0" />
       <Button fx:id="btn_wyniki" layoutX="191.0" layoutY="337.0" mnemonicParsing="false" onMouseClicked="#actionWyniiki" prefHeight="45.0" prefWidth="144.0" text="MOJE WYNIKI">
          <font>
             <Font name="System Bold" size="12.0" />
@@ -76,4 +77,7 @@
       <Label fx:id="lblMIN" layoutX="204.0" layoutY="286.0" text="Label" />
       <Label fx:id="lblMAX" layoutX="468.0" layoutY="286.0" text="Label" />
    </children>
+   <padding>
+      <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+   </padding>
 </AnchorPane>
