@@ -77,3 +77,12 @@ insert into pytania(zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) values ('SQL','
 insert into pytania(zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) values ('SQL','Pytanie12?','create table','use database','altertable','create database', 4);
 insert into pytania(zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) values ('SQL','Pytanie13?','create table','use database','altertable','create database', 4);
 insert into pytania(zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) values ('SQL','Pytanie14?','create table','use database','altertable','create database', 4);
+
+insert into pytania(zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) values ('Java','Pytanie20?','create table','use database','altertable','create database', 4);
+insert into pytania(zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) values ('Java','Pytanie21?','create table','use database','altertable','create database', 4);
+insert into pytania(zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) values ('GiT','Pytanie22?','create table','use database','altertable','create database', 4);
+insert into pytania(zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) values ('GiT','Pytanie23?','create table','use database','altertable','create database', 4);
+insert into pytania(zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) values ('Java','Pytanie14?','create table','use database','altertable','create database', 4);
+
+insert into pytania(zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) values ('FE','Pytanie80?','create table','use database','altertable','create database', 4);
+insert into pytania(zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) values ('SPRING','Pytanie81?','create table','use database','altertable','create database', 4);

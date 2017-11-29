@@ -171,7 +171,15 @@ import javafx.scene.input.MouseEvent;
 	        cb_spring.setText(cb_spring.getText()+" ("+App.ilespring+")");
 	        
 	        this.showPieChart();
-	        System.out.println("Czy udało się tu wejść?");
+	        //System.out.println("Czy udało się tu wejść?");
+	        
+	        sIle.setMajorTickUnit(1);
+	        sIle.setBlockIncrement(1);
+	        
+	        sIle.setShowTickLabels(true);
+	        sIle.setShowTickMarks(false);
+	        
+	        //sIle.setMajorTickUnit(value);
 	         
 	        policz();
 	        
@@ -187,24 +195,43 @@ import javafx.scene.input.MouseEvent;
 	    	if (cb_java.isSelected()) ilepytan+=App.ilejava; 
 	    	sIle.setMax(ilepytan);
 	    	
-	    	if (ilepytan>0) 
+	    	if (ilepytan>0) {
 	    		sIle.setMin(1);
-	    	else
+	    		if (ilepytan>1)
+	    			sIle.setDisable(false);
+	    		else
+	    			sIle.setDisable(true);
+	    	}
+	    	else {
 	    		sIle.setMin(0);
+	    		sIle.setDisable(true);
+	    	}
+	    	
 	    	
 	    	lblMIN.setText(""+(int)sIle.getMin());
 	    	lblMAX.setText(""+(int)sIle.getMax());
+	    	
+	    	//sIle.setValue((int)(sIle.getValue()*10)/10);
 	    	
 	    	if (sIle.getValue()>ilepytan)
 	    			sIle.setValue(ilepytan);
 	    	if ((ilepytan>0)&&(sIle.getValue()<1))
 	    			sIle.setValue(1);
+	    	
+	    	if (sIle.getValue()<1) sIle.setValue(sIle.getMin());
+	    	if (sIle.getValue()>sIle.getMax()) sIle.setValue(sIle.getMax());
 	    				
 	    	lblIle.setText(""+(int)sIle.getValue());
+	    	
+	    	System.out.println("Ilepytan="+ilepytan);
+	    	System.out.println("sIle.getValue()="+sIle.getValue());
+	    	System.out.println("sIle.getMin()="+sIle.getMin());
+	    	System.out.println("sIle.getMax()="+sIle.getMax());
 	    }
 	    
 	    @FXML
 	    void actionChange(MouseEvent event) {
+	    	sIle.setValue((int)(sIle.getValue()*10+5)/10);
 	    	lblIle.setText(""+(int)sIle.getValue());
 	    }
 
