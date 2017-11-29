@@ -17,6 +17,7 @@ public class Main extends Application {
 		Scene scene = new Scene(parent);
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Reaktor PWN");
+		primaryStage.setResizable(false);
 		primaryStage.show();
 	}
 	

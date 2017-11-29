@@ -67,6 +67,7 @@ public class MojeWynikiController {
     	Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/app/View/ZakresView.fxml"));
     	Scene scene = new Scene(parent);
     	stage.setScene(scene);
+    	stage.setResizable(false);
     	stage.setTitle("Test");
     	stage.show();
     	((Node)(event.getSource())).getScene().getWindow().hide();

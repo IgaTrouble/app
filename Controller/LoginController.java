@@ -48,8 +48,12 @@ public class LoginController {
     DBConnector db;
     
    public void initialize() {
-	   db = new DBConnector();}
+	   db = new DBConnector();
+	   	   
+   }
     	public static String typ;
+    	
+    	
  
     
     @FXML
@@ -81,6 +85,7 @@ public class LoginController {
 	        	Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/app/View/PanelView.fxml"));
 	        	Scene scene = new Scene(parent);
 	        	stage.setScene(scene);
+	        	stage.setResizable(false);
 	        	stage.setTitle("Logowanie");
 	        	stage.show();
 	         }
@@ -88,6 +93,7 @@ public class LoginController {
     			Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/app/View/ZakresView.fxml"));
 	        	Scene scene = new Scene(parent);
 	        	stage.setScene(scene);
+	        	stage.setResizable(false);
 	        	stage.setTitle("Wybór zakresu");
 	        	stage.show();
 	        

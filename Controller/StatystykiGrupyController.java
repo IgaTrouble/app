@@ -64,6 +64,7 @@ public class StatystykiGrupyController {
     	Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/app/View/StatystykiView.fxml"));
     	Scene scene = new Scene(parent);
     	stage.setScene(scene);
+    	stage.setResizable(false);
     	stage.setTitle("Statystyki");
     	stage.show();
     	((Node)(event.getSource())).getScene().getWindow().hide();

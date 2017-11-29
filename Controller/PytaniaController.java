@@ -362,6 +362,7 @@ System.out.println("robię select");
     	Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/app/View/LoginView.fxml"));
     	Scene scene = new Scene(parent);
     	stage.setScene(scene);
+    	stage.setResizable(false);
     	stage.setTitle("Logowanie");
     	stage.show();
     	((Node)(event.getSource())).getScene().getWindow().hide();
@@ -374,7 +375,8 @@ System.out.println("robię select");
     	Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/app/View/PanelView.fxml"));
     	Scene scene = new Scene(parent);
     	stage.setScene(scene);
-    	stage.setTitle("Logowanie");
+    	stage.setResizable(false);
+    	stage.setTitle("Panel");
     	stage.show();
     	((Node)(event.getSource())).getScene().getWindow().hide();
     }

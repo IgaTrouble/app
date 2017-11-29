@@ -235,6 +235,7 @@ public class KursanciKontroller {
     	Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/app/View/PanelView.fxml"));
     	Scene scene = new Scene(parent);
     	stage.setScene(scene);
+    	stage.setResizable(false);
     	stage.setTitle("Logowanie");
     	stage.show();
         System.out.println("Zamykamy okienko bieżące");

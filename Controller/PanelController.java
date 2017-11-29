@@ -88,6 +88,7 @@ public class PanelController {
     	Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/app/View/KursanciView.fxml"));
 		Scene scene = new Scene(parent);
 		stage.setScene(scene);
+		stage.setResizable(false);
 		stage.setTitle("Kursanci");
 		stage.show();
 		((Node)(event.getSource())).getScene().getWindow().hide();
@@ -99,6 +100,7 @@ public class PanelController {
     	Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/app/View/PytaniaView.fxml"));
 		Scene scene = new Scene(parent);
 		stage.setScene(scene);
+		stage.setResizable(false);
 		stage.setTitle("Pytania");
 		stage.show();
 		((Node)(event.getSource())).getScene().getWindow().hide();
@@ -110,6 +112,7 @@ public class PanelController {
     	Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/app/View/LoginView.fxml"));
     	Scene scene = new Scene(parent);
     	stage.setScene(scene);
+    	stage.setResizable(false);
     	stage.setTitle("Logowanie");
     	stage.show();
     	((Node)(event.getSource())).getScene().getWindow().hide();
@@ -121,6 +124,7 @@ public class PanelController {
     	Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/app/View/StatystykiView.fxml"));
     	Scene scene = new Scene(parent);
     	stage.setScene(scene);
+    	stage.setResizable(false);
     	stage.setTitle("Statystyki");
     	stage.show();
     	((Node)(event.getSource())).getScene().getWindow().hide();

@@ -394,6 +394,7 @@ public class TestController {
 	    	Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/app/View/ZakresView.fxml"));
 	    	Scene scene = new Scene(parent);
 	    	stage.setScene(scene);
+	    	stage.setResizable(false);
 	    	stage.setTitle("Logowanie");
 	    	System.out.println(3);
 	    	stage.show();	    

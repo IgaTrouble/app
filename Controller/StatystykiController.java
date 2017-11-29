@@ -43,6 +43,7 @@ public class StatystykiController {
         	Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/app/View/StatystykiKursantaView.fxml"));
         	Scene scene = new Scene(parent);
         	stage.setScene(scene);
+        	stage.setResizable(false);
         	stage.setTitle("Statystyki");
         	stage.show();
         	((Node)(event.getSource())).getScene().getWindow().hide();}
@@ -52,6 +53,7 @@ public class StatystykiController {
         	Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/app/View/StatystykiGrupyView.fxml"));
         	Scene scene = new Scene(parent);
         	stage.setScene(scene);
+        	stage.setResizable(false);
         	stage.setTitle("Statystyki");
         	stage.show();
         	((Node)(event.getSource())).getScene().getWindow().hide();}
@@ -114,6 +116,7 @@ public class StatystykiController {
 	    	Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/app/View/PanelView.fxml"));
 	    	Scene scene = new Scene(parent);
 	    	stage.setScene(scene);
+	    	stage.setResizable(false);
 	    	stage.setTitle("Logowanie");
 	    	stage.show();
 	    	((Node)(event.getSource())).getScene().getWindow().hide();
