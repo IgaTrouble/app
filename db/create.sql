@@ -55,6 +55,10 @@ insert into zakresy(zakres, opis_zakresu) values ('Python', 'pytania z bazy dany
 insert into zakresy(zakres, opis_zakresu) values ('Java', 'pytania z bazy danych');
 insert into zakresy(zakres,opis_zakresu) values('FE','Front-End');
 insert into zakresy(zakres,opis_zakresu) values('SP','Spring');
+update zakresy set opis_zakresu='Pytania z GITa' where zakres='GiT';
+update zakresy set opis_zakresu='Pytania z JAVy' where zakres='Java';
+update zakresy set opis_zakresu='Pytania z Pythona' where zakres='Python';
+update zakresy set opis_zakresu='Pytania ze SPRINGa' where zakres='SPRING';
 
 select * from zakresy;
 delete from  pytania;
