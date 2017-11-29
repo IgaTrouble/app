@@ -1,13 +1,9 @@
 package app.Model;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import app.Controller.PytaniaController;
 import app.Database.DBConnector;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
@@ -22,7 +18,6 @@ public class Pytania {
 	private Integer odppopr;
 	static String sqlUpd;
 	DBConnector db;
-	//PytaniaController pc = new PytaniaController();
 	
 	
 	@Override

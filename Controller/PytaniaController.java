@@ -206,12 +206,6 @@ public class PytaniaController {
     	tvPytania.setEditable(true);
     	
     	cb_zakres.setItems(zakres);
-    	
-    	/*
-    	ObservableList<String> list = FXCollections.observableArrayList();
-    	pobierz_zakres(list);
-    	cb_zakres.setItems(list);
-    	*/
     }
     
 
