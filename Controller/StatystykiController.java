@@ -33,12 +33,13 @@ public class StatystykiController {
     protected ComboBox<String> cb_grupa;
 
     @FXML
-	protected ComboBox<Loginy> cb_osoba;
+	protected ComboBox<String> cb_osoba;
 
     @FXML
     void actionShowStat(MouseEvent event) throws IOException {
     	if (!(cb_osoba.getValue() == null)) {
     		System.out.println(cb_osoba.getValue());
+    		App.kursant=cb_osoba.getValue();
     	 	Stage stage = new Stage();
         	Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/app/View/StatystykiKursantaView.fxml"));
         	Scene scene = new Scene(parent);

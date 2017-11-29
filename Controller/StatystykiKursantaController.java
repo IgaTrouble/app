@@ -22,7 +22,8 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-public class StatystykiKursantaController extends StatystykiController {
+public class StatystykiKursantaController //extends StatystykiController 
+{
 
     @FXML
     private Button btnZamknij;
@@ -76,13 +77,15 @@ public class StatystykiKursantaController extends StatystykiController {
     			+ "from odpowiedzi o "
     			+ "inner join pytania p on p.idp=o.pytanie "
     			+ "inner join testy t on t.idt=o.test "
-    			+ "where t.kursant='"+cb_osoba.getValue() +"' and o.odpowiedz=p.odppopr "
+    			+ "inner join loginy l on l.email=t.kursant "    			
+    			+ "where concat(l.imie,' ',l.nazwisko)='"+App.kursant +"' and o.odpowiedz=p.odppopr "
     			+ "union "
     			+ "select  count(*), 'Nieoprawne' "
     			+ "from odpowiedzi o "
     			+ "inner join pytania p on p.idp=o.pytanie "
     			+ "inner join testy t on t.idt=o.test "
-    			+ "where t.kursant='"+cb_osoba.getValue()+"' and o.odpowiedz<>p.odppopr ";
+    			+ "inner join loginy l on l.email=t.kursant "
+    			+ "where concat(l.imie,' ',l.nazwisko)='"+App.kursant +"' and o.odpowiedz<>p.odppopr ";
     	pic.setVisible(false);
     	ObservableList<Data> data = FXCollections.observableArrayList();
     	DBConnector db = new DBConnector();
@@ -108,7 +111,7 @@ public class StatystykiKursantaController extends StatystykiController {
         pic.getData().addAll(data);
 	 	pic.setVisible(true);
 	 	
-	 	lblKursant.setText(App.imie+" "+App.nazwisko);
+	 	lblKursant.setText(App.kursant);
 	 	lblOdpowiedziAll.setText(""+(int)(pop+niep));
 	 	lblOdpowiedziPopr.setText(""+(int)(pop));
 	 	lblOdpowiedziNiep.setText(""+(int)(niep));
@@ -120,12 +123,12 @@ public class StatystykiKursantaController extends StatystykiController {
 	 			+ "coalesce(avg(t.wynik),0) as wynik "
 	 			+ "from loginy k "
 	 			+ "left join testy t on t.kursant=k.email "
-	 			+ "where k.email='"+App.email+"' group by k.email, k.grupa; ";
+	 			+ "where concat(k.imie,' ',k.nazwisko)='"+App.kursant+"' group by k.email, k.grupa; ";
 	 	
 	 	rs = conn.createStatement().executeQuery(sql);
         System.out.println(sql);
         while(rs.next()){
-        	lblGrupa.setText(rs.getString(2));
+        	//lblGrupa.setText(rs.getString(2));
         	lblTestyAll.setText(""+(rs.getInt(3)));
         	lblTestyZakonczone.setText(""+rs.getInt(4));
         	lblOdpowiedziWynik.setText(""+rs.getDouble(5)+" %");

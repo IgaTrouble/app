@@ -20,5 +20,6 @@ public class App {
 	public static int ilefrontend;
 	public static int ilespring;
 	public static String grupa;
+	public static String kursant;
 	
 }
