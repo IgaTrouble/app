@@ -16,6 +16,7 @@ create table zakresy(
     opis_zakresu varchar(50)
 );
 
+
 create table pytania(
 	idp integer primary key auto_increment,
     zakres varchar(10),
