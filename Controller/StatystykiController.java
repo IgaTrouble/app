@@ -29,8 +29,8 @@ import javafx.stage.Stage;
 
 public class StatystykiController {
 	public DBConnector db;
-	private ObservableList grupy;
-	private ObservableList osoby;
+	private ObservableList<String> grupy;
+	private ObservableList<String> osoby;
     @FXML
     private StackedBarChart<Double, String> sbc;
     @FXML

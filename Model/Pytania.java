@@ -54,9 +54,10 @@ public class Pytania {
 		
 		if (zakres.equals("SQL") || zakres.equals("Git") || zakres.equals("Front-End")
 				|| zakres.equals("Python") || zakres.equals("Java") || zakres.equals("Spring"))  {
-		//sqlUpd="update pytania set zakres='"+this.zakres+"' where idp='"+this.idp+"';";
-		//System.out.println(sqlUpd);
-		this.zakres = zakres;
+			this.zakres = zakres;
+			System.out.println("Jaki jest zakres" + zakres + this.zakres);
+		sqlUpd="update pytania set zakres='"+this.zakres+"' where idp='"+this.idp+"';";
+		System.out.println(sqlUpd);
 		this.update();
 		} else {
 			Alert e = new Alert(AlertType.ERROR);
@@ -64,7 +65,6 @@ public class Pytania {
         	e.setHeaderText("Błąd, podano błędny zakres pytań");
         	e.setTitle("Błąd");
         	e.showAndWait();
-        	//pc.refresh();
 		}
 		
 		
@@ -78,6 +78,7 @@ public class Pytania {
 		System.out.println(sqlUpd);
 		this.update();
 	}
+	
 	public String getOdp1() {
 		return odp1;
 	}
@@ -119,8 +120,8 @@ public class Pytania {
 		return odppopr;
 	}
 	public void setOdppopr(Integer odppopr) throws SQLException {
-		this.odppopr = odppopr;
-		if (odppopr < 5) {
+		if ((odppopr < 5) && (odppopr>0)) {
+			this.odppopr = odppopr;
 			sqlUpd="update pytania set odppopr='"+this.odppopr+"' where idp='"+this.idp+"';";
 			System.out.println(sqlUpd);
 			this.update();
@@ -150,7 +151,6 @@ public class Pytania {
 		} catch (SQLException e) {
 			System.out.println("Błąd zapisu do DB : "+e.getMessage());
 			conn.close();
-			
 			return false;
 		}
 	}

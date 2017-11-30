@@ -36,7 +36,8 @@ import javafx.util.converter.IntegerStringConverter;
 public class PytaniaController {
 	public DBConnector db;
 	public ObservableList<Pytania> data;
-    ObservableList<String> zakres = FXCollections.observableArrayList("SQL", "Git", "Front-End", "Python", "Java", "Spring");
+ //   ObservableList<String> zakres = FXCollections.observableArrayList("SQL", "Git", "Front-End", "Python", "Java", "Spring");
+    private ObservableList zakres;
     @FXML
     private TableView<Pytania> tvPytania;
 
@@ -158,7 +159,7 @@ public class PytaniaController {
     	} else{
     		Alert e = new Alert(AlertType.ERROR);
         	e.setContentText(err);
-        	e.setHeaderText("Błąd, nie wypełniono wszytskich pól");
+        	e.setHeaderText("Błąd, nie wypełniono wszystkich pól");
         	e.setTitle("Błąd");
         	e.showAndWait(); 
     		return false;
@@ -182,29 +183,27 @@ public class PytaniaController {
 	System.out.println("refresh");
 	}
 	
-	public  void pobierz_zakres(ObservableList<String> zakres)  {
-		ResultSet rs;
-		//DBConnector db=new DBConnector();
+	public  void pobierz_zakres()  {
 		try {
+			zakres = FXCollections.observableArrayList();
 			Connection conn = db.Connection();
-			rs = conn.createStatement().executeQuery("select zakres from zakresy;");
+			ResultSet rs = conn.createStatement().executeQuery("select count(*), zakres from pytania group by zakres;");
 			while(rs.next()){
-				zakres.add(rs.getString(1));
+				zakres.addAll(rs.getString(2));
 			}
 			conn.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-				
 	}
+
 	
     public void initialize() throws SQLException {
     	db = new DBConnector();
     	this.select();
     	this.editPytania();
     	tvPytania.setEditable(true);
-    	
+    	this.pobierz_zakres();
     	cb_zakres.setItems(zakres);
     }
     
@@ -311,7 +310,7 @@ System.out.println("robię select");
 						((Pytania) t.getTableView().getItems().get(
 						        t.getTablePosition().getRow())
 						        ).setOdppopr(t.getNewValue());
-						
+						this.refresh();
 					} catch (SQLException e) {
 						e.printStackTrace();
 					}

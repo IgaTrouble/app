@@ -13,7 +13,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="1015.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Controller.PytaniaController">
    <children>
-      <TableView fx:id="tvPytania" editable="true" layoutX="10.0" layoutY="14.0" prefHeight="310.0" prefWidth="996.0">
+      <TableView fx:id="tvPytania" cache="true" cacheHint="SCALE" editable="true" layoutX="10.0" layoutY="14.0" prefHeight="310.0" prefWidth="996.0">
         <columns>
           <TableColumn fx:id="colid" prefWidth="42.0" text="ID" />
             <TableColumn fx:id="colodp5" prefWidth="97.0" text="zakres" />

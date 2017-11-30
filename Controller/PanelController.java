@@ -113,7 +113,7 @@ public class PanelController {
     	Scene scene = new Scene(parent);
     	stage.setScene(scene);
     	stage.setResizable(false);
-    	stage.setTitle("Logowanie");
+    	stage.setTitle("Administrator");
     	stage.show();
     	((Node)(event.getSource())).getScene().getWindow().hide();
     }

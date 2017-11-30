@@ -86,7 +86,7 @@ public class LoginController {
 	        	Scene scene = new Scene(parent);
 	        	stage.setScene(scene);
 	        	stage.setResizable(false);
-	        	stage.setTitle("Logowanie");
+	        	stage.setTitle("Administrator");
 	        	stage.show();
 	         }
     		else {
@@ -115,18 +115,18 @@ public class LoginController {
         	tf_pas.setVisible(true);
         	tf_pas.setText(pf_text);
     		flag = false;
-    		btn_show.setText("Hide");
+    		btn_show.setText("Ukryj");
     	}	 else {
     		String pf_text = pf_pass.getText();
         	pf_pass.setVisible(true);
         	tf_pas.setVisible(false);
         	tf_pas.setText(pf_text);
     		flag = true;
-    		btn_show.setText("Show");
+    		btn_show.setText("Pokaż");
     	}
     	
     }
-    
+        
     @FXML
     void enterLog(KeyEvent event) throws SQLException, IOException {
     	if(event.getCode() == KeyCode.ENTER)	{
