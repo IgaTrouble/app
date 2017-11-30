@@ -131,7 +131,10 @@ public class StatystykiKursantaController //extends StatystykiController
         	//lblGrupa.setText(rs.getString(2));
         	lblTestyAll.setText(""+(rs.getInt(3)));
         	lblTestyZakonczone.setText(""+rs.getInt(4));
-        	lblOdpowiedziWynik.setText(""+rs.getDouble(5)+" %");
+        	double es = rs.getDouble(5)*100;
+        	es = Math.round(es);
+    		es = es /100;
+        	lblOdpowiedziWynik.setText(""+es+" %");
         	pbWynik.setProgress(rs.getDouble(5)/100.0);
         }   
 	 	

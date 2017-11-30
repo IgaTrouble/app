@@ -82,7 +82,7 @@ public class MojeWynikiController {
     			+ "inner join testy t on t.idt=o.test "
     			+ "where t.kursant='"+App.email+"' and o.odpowiedz=p.odppopr "
     			+ "union "
-    			+ "select  count(*), 'Nieoprawne' "
+    			+ "select  count(*), 'Niepoprawne' "
     			+ "from odpowiedzi o "
     			+ "inner join pytania p on p.idp=o.pytanie "
     			+ "inner join testy t on t.idt=o.test "

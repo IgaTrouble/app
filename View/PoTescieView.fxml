@@ -5,9 +5,10 @@
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Controller.PoTescieController">
    <children>
@@ -36,6 +37,11 @@
             <TableColumn fx:id="cWynik" prefWidth="121.0" text="Wynik" />
         </columns>
       </TableView>
-      <Button fx:id="btnZamknij" layoutX="511.0" layoutY="352.0" mnemonicParsing="false" onMouseClicked="#actionZamknij" prefHeight="25.0" prefWidth="64.0" text="Wróć" />
+      <Button fx:id="btnZamknij" layoutX="493.0" layoutY="341.0" mnemonicParsing="false" onMouseClicked="#actionZamknij" prefHeight="36.0" prefWidth="82.0" text="POWRÓT" />
+      <ImageView fitHeight="88.0" fitWidth="82.0" layoutX="528.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../db/logo_pionowe_reaktor.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

@@ -9,13 +9,17 @@
 <?import javafx.scene.effect.Lighting?>
 <?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="486.0" prefWidth="717.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Controller.MojeWynikiController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="456.0" prefWidth="660.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Controller.MojeWynikiController">
    <children>
-      <Button fx:id="btnZamknij" layoutX="643.0" layoutY="447.0" mnemonicParsing="false" onMouseClicked="#ActionZamknij" text="Zamknij" />
+      <Button fx:id="btnZamknij" layoutX="543.0" layoutY="401.0" mnemonicParsing="false" onMouseClicked="#ActionZamknij" prefHeight="34.0" prefWidth="87.0" text="POWRÓT">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
       <Label layoutX="53.0" layoutY="36.0" text="Moje wyniki - statystyki">
          <font>
             <Font size="23.0" />
@@ -71,7 +75,7 @@
             <Font name="Arial Bold" size="23.0" />
          </font>
       </Label>
-      <PieChart fx:id="pic" layoutX="402.0" layoutY="128.0" legendVisible="false" prefHeight="283.0" prefWidth="311.0" />
+      <PieChart fx:id="pic" layoutX="256.0" layoutY="-17.0" legendVisible="false" prefHeight="400.0" prefWidth="460.0" />
       <ProgressBar fx:id="pbWynik" layoutX="220.0" layoutY="401.0" prefHeight="34.0" prefWidth="200.0" progress="0.68">
          <effect>
             <Reflection bottomOpacity="0.17" fraction="1.0" topOpacity="0.0">
@@ -88,5 +92,10 @@
             </Reflection>
          </effect>
       </ProgressBar>
+      <ImageView fitHeight="61.0" fitWidth="73.0" layoutX="609.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../db/logo_pionowe_reaktor.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
