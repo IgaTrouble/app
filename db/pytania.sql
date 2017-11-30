@@ -1,34 +1,44 @@
 #pytania sql
 insert into pytania(zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) values 
-('SQL','Jakim poleceniem utworzysz nową bazę danych?','create table','use database','altertable','create database', 4),
-('SQL','Do czego służy klauzula WHERE?','Do definiowania warunków zapytania','Do określania gdzie mają zostać wyświetlone wyniki','Do określenia adresu (URL) bazy danych','Do ograniczenia liczby wyników', 1),
-('SQL','Jak uszeregować wyniki w kolumnie wg kolejności alfabetycznej?','asc','alfa','desc','mesc', 3),
-('SQL', 'Użycie klauzuli UNQUE w deklaracji pola tabeli instrukcji CREATE TABLE oznacza, że:', 'w tym polu nie może pojawić się wartość NULL'
-'w żadnym innym polu tej tabeli nie można użyć klauzuli UNIQUE'
-'wartości w tym polu nie mogą się powtarzać'
-'na tej kolumnie (polu) zostanie automatycznie zalozony indeks', 3),
+('SQL','Jakim poleceniem utworzysz nową bazę danych?','create table','use database','altertable','create database', 4);
+insert into pytania(zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) values
+('SQL','Do czego służy klauzula WHERE?','Do definiowania warunków zapytania','Do określania gdzie mają zostać wyświetlone wyniki','Do określenia adresu (URL) bazy danych','Do ograniczenia liczby wyników', 1);
+insert into pytania(zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) values
+('SQL','Jak uszeregować wyniki w kolumnie wg kolejności alfabetycznej?','asc','alfa','desc','mesc', 3);
+insert into pytania(zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) values
+('SQL', 'Użycie klauzuli UNQUE w deklaracji pola tabeli instrukcji CREATE TABLE oznacza, że:', 
+'w tym polu nie może pojawić się wartość NULL',
+'w żadnym innym polu tej tabeli nie można użyć klauzuli UNIQUE',
+'wartości w tym polu nie mogą się powtarzać',
+'na tej kolumnie (polu) zostanie automatycznie zalozony indeks', 3);
+insert into pytania(zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) values
 ('SQL', 'Instrukcja SELECT Table_Name FROM User_Tables', 'Zwraca nazwy tabel znajdujących się w obszarze tabel użytkownika', 
 'Wypisuje nazwy kolumn z tabeli User_Tables',
 'Wypisuje wszystkie rekordy z perspektywy User_Tables',
-'Zwraca nazwy tabel utworzonych przez użytkownika', 1),
+'Zwraca nazwy tabel utworzonych przez użytkownika', 1);
+insert into pytania(zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) values
 ('SQL', 'Instrukcja ROLLBACK służy do:', 'wycofywania zmian w bazie danych', 'zatwierdzania zmian w bazie danych', 
 'usuwania rekordów z bazy danych',
-'aktualizacji rekordów w bazie danych', 1),
+'aktualizacji rekordów w bazie danych', 1);
+insert into pytania(zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) values
 ('SQL', 'Dana jest tabela Osoby(Imie, Nazwisko, Zarobki). Które z następujących instrukcji są składniowo poprawnymi instrukcjami SQL:', 
 'SELECT Osoby.Nazwisko, Osoby.Imie, Osoby.Zarobki FROM Osoby HAVING Osoby.Zarobki>1000;',
 'INSERT INTO Osoby SELECT * FROM Osoby WHERE Nazwisko = ‘KOWALSKI’;',
 'DELETE FROM Osoby WHENEVER Osoby.Zarobki<1000;',
-'UPDATE Osoby WHERE Nazwisko=’KOWALSKI’;', 3),
+'UPDATE Osoby WHERE Nazwisko=’KOWALSKI’;', 3);
+insert into pytania(zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) values
 ('SQL', 'Dane są dwie tabele Osoby(Imie, Nazwisko, Zarobki, Id_działu) oraz Działy(Id_działu, Nazwa). Które z następujących instrukcji są poprawnymi instrukcjami SQL:',
 'SELECT Osoby.Nazwisko, COUNT(Działy.Nazwa) FROM Osoby, Działy WHERE Osoby.Id_działu=Działy.Id_działu GROUP BY Osoby.Nazwisko HAVING COUNT(Id_działu)<2;',
 'INSERT INTO Osoby VALUES (‘Jan’, ‘Kowalski’, 2000) WHERE Osoby.Id_działu = 23;',
 'DELETE FROM Osoby, Działy WHERE Osoby.Nazwisko=’KOWALSKI’ AND Działy.Nazwa=’KASA’ AND Osoby.Id_działu=Działy.Id_działu;',
-'UPDATE Osoby SET Id_działu=NULL WHERE 5>(SELECT COUNT(*) FROM Działy);', 4),
-('SQL', 'Wskaż poprawne zapytanie SQL znajdujące stanowiska pracy występujące w działach 10 lub 20;'
+'UPDATE Osoby SET Id_działu=NULL WHERE 5>(SELECT COUNT(*) FROM Działy);', 4);
+insert into pytania(zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) values
+('SQL', 'Wskaż poprawne zapytanie SQL znajdujące stanowiska pracy występujące w działach 10 lub 20;',
 'SELECT DISTINCT job FROM emp WHERE deptno = 10 OR deptno = 20;',
 'SELECT DISTINCT job FROM emp WHERE deptno = 10 UNION SELECT DISTINCT job FROM emp WHERE deptno = 20;',
-'SELECT DISTINCT job FROM emp WHERE deptno = 10 AND deptno = 20;'
-'SELECT DISTINCT job FROM emp WHERE deptno = 10 INTERSECT SELECT DISTINCT job FROM emp WHERE deptno = 20;', 1),
+'SELECT DISTINCT job FROM emp WHERE deptno = 10 AND deptno = 20;',
+'SELECT DISTINCT job FROM emp WHERE deptno = 10 INTERSECT SELECT DISTINCT job FROM emp WHERE deptno = 20;', 1);
+insert into pytania(zakres,pytanie,odp1,odp2,odp3,odp4, odppopr) values
 ('SQL', 'W filmach grają aktorzy. Każdy film ma dokładnie jednego reżysera i jednego lub więcej scenarzystę. Który z poniższych schematów jest najodpowiedniejszy z punktu widzenia zasad projektowania baz danych:',
 'Filmy(id_filmu, tytuł, reżyser, gaża_reżysera)
 Aktorzy(id_aktora, nazwisko,rola, id_filmu, gaża)

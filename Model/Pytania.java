@@ -1,7 +1,9 @@
 package app.Model;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import app.Database.DBConnector;
 import javafx.scene.control.Alert;
@@ -51,9 +53,21 @@ public class Pytania {
 		return zakres;
 	}
 	public void setZakres(String zakres) throws SQLException {
+		db = new DBConnector();
+		ArrayList<String> a = new ArrayList<String>();
+		a.clear();
+		Connection conn = db.Connection();
+		ResultSet rs = conn.createStatement().executeQuery("select 1, zakres from zakresy ;");
+		while(rs.next()){
+			a.add(new String(rs.getString(2)));
+		}
+		conn.close();
 		
-		if (zakres.equals("SQL") || zakres.equals("Git") || zakres.equals("Front-End")
-				|| zakres.equals("Python") || zakres.equals("Java") || zakres.equals("Spring"))  {
+		System.out.println(a);
+		
+		if (a.contains((zakres))) {
+		//if (zakres.equals("SQL") || zakres.equals("Git") || zakres.equals("Front-End")
+		//		|| zakres.equals("Python") || zakres.equals("Java") || zakres.equals("Spring"))  {
 			this.zakres = zakres;
 			System.out.println("Jaki jest zakres" + zakres + this.zakres);
 		sqlUpd="update pytania set zakres='"+this.zakres+"' where idp='"+this.idp+"';";

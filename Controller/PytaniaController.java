@@ -187,7 +187,7 @@ public class PytaniaController {
 		try {
 			zakres = FXCollections.observableArrayList();
 			Connection conn = db.Connection();
-			ResultSet rs = conn.createStatement().executeQuery("select count(*), zakres from pytania group by zakres;");
+			ResultSet rs = conn.createStatement().executeQuery("select 1, zakres from zakresy ;");
 			while(rs.next()){
 				zakres.addAll(rs.getString(2));
 			}
