@@ -21,5 +21,6 @@ public class App {
 	public static int ilespring;
 	public static String grupa;
 	public static String kursant;
+	public static int wynik_testu;
 	
 }

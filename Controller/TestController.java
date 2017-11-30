@@ -179,10 +179,21 @@ public class TestController {
     }
 
     @FXML
-    void actionKoniec(MouseEvent event) {
+    void actionKoniec(MouseEvent event) throws IOException {
     	System.out.println("Koniec = "+(int)(100.0*(double)ilepopr/(double)pytanie));
     	Testy.update_wynik(numertestu,(int)(100.0*(double)ilepopr/(double)pytanie));
-    	zamknij();
+    	App.wynik_testu=(int)(100.0*(double)ilepopr/(double)pytanie);
+    	
+    	
+		btnNext.getScene().getWindow().hide();
+		
+    	Stage stage = new Stage();
+    	Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/app/View/PoTescieView.fxml"));
+    	Scene scene = new Scene(parent);
+    	stage.setScene(scene);
+    	stage.setResizable(false);
+    	stage.setTitle("Wyniki Twojego Testu");
+    	stage.show();	       	    	
     }
 
     @FXML
@@ -395,10 +406,10 @@ public class TestController {
 	    	Scene scene = new Scene(parent);
 	    	stage.setScene(scene);
 	    	stage.setResizable(false);
-	    	stage.setTitle("Logowanie");
-	    	System.out.println(3);
+	    	stage.setTitle("Zakres pytań");
+	    	//System.out.println(3);
 	    	stage.show();	    
-	    	System.out.println(4);
+	    	//System.out.println(4);
     	} catch (Exception e) {
     		System.out.println("Zamykanie przed otwarciem");
     	}
