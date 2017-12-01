@@ -41,10 +41,17 @@ public class StatystykiController {
 
     @FXML
 	protected ComboBox<String> cb_osoba;
+    
+    @FXML
+    private Button btn_zamknij;
+    
+    
+    
 
     @FXML
     void actionShowStat(MouseEvent event) throws IOException {
     	if (!(cb_osoba.getValue() == null)) {
+    		cb_grupa.setValue(null);
     		System.out.println(cb_osoba.getValue());
     		App.kursant=cb_osoba.getValue();
     	 	Stage stage = new Stage();
@@ -66,10 +73,10 @@ public class StatystykiController {
         	stage.show();
         	((Node)(event.getSource())).getScene().getWindow().hide();}
     	else {
-    		Alert e = new Alert(AlertType.ERROR);
-        	e.setContentText("Bląd");
-        	e.setHeaderText("Błąd, nie wybrano grupy ani osoby");
-        	e.setTitle("Błąd");
+    		Alert e = new Alert(AlertType.INFORMATION);
+        	e.setContentText("Informacja");
+        	e.setHeaderText("Nie wybrano grupy ani osoby");
+        	e.setTitle("Informacja");
         	e.showAndWait(); 
     	}		
     }
@@ -80,7 +87,7 @@ public class StatystykiController {
     	cb_grupa.setItems(grupy);
     	this.pobierz_osoby();
     	cb_osoba.setItems(osoby);
-    	
+    	System.out.println("jestem tu");
     	this.sbc();
     }
     
@@ -154,14 +161,9 @@ public class StatystykiController {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			
-			    
-    
-    
+
 	}
 		
-	   @FXML
-	    private Button btn_zamknij;
 	   
 		@FXML
 	    void actionZamknij(MouseEvent event) throws IOException {
