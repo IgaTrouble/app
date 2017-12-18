@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="423.0" prefWidth="660.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Controller.ZakresController">
+   <children>
+      <Label layoutX="15.0" layoutY="14.0" text="Zaczynamy test, wybierz zakres tematyczny oraz liczbę pytań.">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <CheckBox fx:id="cb_sql" layoutX="13.0" layoutY="50.0" mnemonicParsing="false" onMouseClicked="#actionSQL" text="SQL">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="cb_git" layoutX="13.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#actionGit" text="GIT">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="cb_python" layoutX="13.0" layoutY="110.0" mnemonicParsing="false" onMouseClicked="#actionPython" text="Python">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="cb_java" layoutX="13.0" layoutY="140.0" mnemonicParsing="false" onMouseClicked="#actionJava" text="Java">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="cb_all" layoutX="13.0" layoutY="232.0" mnemonicParsing="false" onMouseClicked="#selectAll" text="zaznacz wszystkie">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </CheckBox>
+      <Button fx:id="btn_log" layoutX="363.0" layoutY="364.0" mnemonicParsing="false" onMouseClicked="#actionLog" prefHeight="45.0" prefWidth="144.0" text="LOGOWANIE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="btn_start" layoutX="24.0" layoutY="364.0" mnemonicParsing="false" onMouseClicked="#actionStart" prefHeight="45.0" prefWidth="144.0" text="START">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <PieChart fx:id="pieChart" layoutX="312.0" layoutY="-9.0" legendVisible="false" prefHeight="321.0" prefWidth="364.0" />
+      <Button fx:id="btn_wyniki" layoutX="191.0" layoutY="364.0" mnemonicParsing="false" onMouseClicked="#actionWyniiki" prefHeight="45.0" prefWidth="144.0" text="MOJE WYNIKI">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <CheckBox fx:id="cb_frontend" layoutX="13.0" layoutY="170.0" mnemonicParsing="false" onMouseClicked="#actionFrontend" text="Frontend">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="cb_spring" layoutX="13.0" layoutY="200.0" mnemonicParsing="false" onMouseClicked="#actionSpring" text="Spring">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </CheckBox>
+      <Label layoutX="24.0" layoutY="329.0" text="Ile chcesz pytań w teście:" />
+      <Slider fx:id="sIle" layoutX="232.0" layoutY="331.0" onDragDetected="#actionChange" onDragDone="#actionChange" onDragDropped="#actionChange" onDragEntered="#actionChange" onDragExited="#actionChange" onDragOver="#actionChange" onMouseClicked="#actionChange" onMouseDragEntered="#actionChange" onMouseDragExited="#actionChange" onMouseDragOver="#actionChange" onMouseDragReleased="#actionChange" onMouseDragged="#actionChange" onMouseEntered="#actionChange" onMouseExited="#actionChange" onMouseMoved="#actionChange" onMousePressed="#actionChange" onMouseReleased="#actionChange" onSwipeDown="#actionChange" onSwipeLeft="#actionChange" onSwipeRight="#actionChange" onSwipeUp="#actionChange" prefHeight="14.0" prefWidth="236.0" />
+      <Label fx:id="lblIle" layoutX="331.0" layoutY="308.0" text="Label" textFill="#d90280">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblMIN" layoutX="204.0" layoutY="329.0" text="Label" />
+      <Label fx:id="lblMAX" layoutX="468.0" layoutY="329.0" text="Label" />
+      <ImageView fitHeight="61.0" fitWidth="73.0" layoutX="609.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../db/logo_pionowe_reaktor.png" />
+         </image>
+      </ImageView>
+   </children>
+   <padding>
+      <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+   </padding>
+</AnchorPane>
